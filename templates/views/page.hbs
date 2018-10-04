@@ -1,0 +1,19 @@
+<div class="container">
+	<h1>Page test</h1>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-8 col-md-9">
+			<h1>{{data.page.title}}</h1>
+			<h2>{{data.page.content.brief}}</h2>
+		</div>
+		<div class="col-sm-4 col-md-3">
+			{{#if data.page}}
+				{{data.page.content.full}}
+			{{else}}
+				<h2>Nothing there</h2>
+			{{/if}}	
+		</div>
+	</div>
+	{{>pagination}}
+</div>

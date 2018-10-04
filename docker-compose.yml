@@ -1,0 +1,34 @@
+version:                   '3.7'
+
+networks:
+  testNet:
+    driver: bridge
+
+services:
+  app:
+    container_name: docker-chanter
+    build: .
+    ports:
+      - '3000:3000'
+      - '9229:9229'
+    volumes:
+      - data-volume:/usr/src/app/
+    command:     ["npm", "run", "debug"]
+    restart: always
+    depends_on:
+      - mongo
+    networks:
+      - testNet
+      
+  mongo:
+    container_name: mongo
+    image: mongo
+    environment:
+      MONGO_INITDB_DATABASE: myMongo
+    ports:
+      - '27017:27017'
+    networks:
+      - testNet
+      
+volumes:
+  data-volume:
