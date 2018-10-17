@@ -1,10 +1,18 @@
 var keystone = require('keystone');
 var Types = keystone.Field.Types;
+var localization = require('i18n');
 
 /**
  * Page Model
- * ==========
+ * ========
  */
+
+var LanguageModel = keystone.list('Language');
+
+LanguageModel.model.find().exec(
+	function(err, langs){
+
+
 
 var Page = new keystone.List('Page', {
 	map: {name: 'title'},
@@ -20,7 +28,9 @@ Page.add({
 		brief: {type: Types.Html, wysiwyg: true, height: 150},
 		extended: {type: Types.Html, wysiwyg: true, height: 400},
 	},
+	language: {type: Types.Select, options: langs , default: localization.getLocales()[0], index: true},
 });
+
 
 function updateNavigation() {
 	Page.model.find({
@@ -51,3 +61,5 @@ Page.defaultColumns = 'title, state|100%, in Navigation';
 Page.register();
 
 updateNavigation();
+	}
+);

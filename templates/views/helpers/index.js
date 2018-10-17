@@ -116,6 +116,17 @@ module.exports = function () {
 	};
 
 	/**
+	 * Anthony Ritz 
+	 * Returns all languages from DB
+	 */
+
+	// block rendering for keystone admin css
+	_helpers.getAvailableLanguages = function (user, options) {
+		
+		return 'undefined';
+	};
+
+	/**
 	 * KeystoneJS specific helpers
 	 * ===========================
 	 */

@@ -6,6 +6,8 @@ require('dotenv').config();
 var keystone = require('keystone');
 var handlebars = require('express-handlebars');
 
+
+
 // Initialise Keystone with your project's configuration.
 // See http://keystonejs.com/guide/config for available options
 // and documentation.
@@ -31,7 +33,8 @@ keystone.init({
 	'emails': 'templates/emails',
 
 	'auto update': true,
-	'mongo': 'mongodb://mongo:27017',
+	//'mongo': 'mongodb://mongo:27017',
+	'mongo': 'mongodb://localhost:27017',
 	//'mongo': 'mongodb://hans:Qwertzuiop123@cluster0-shard-00-00-db0ox.mongodb.net:27017,cluster0-shard-00-01-db0ox.mongodb.net:27017,cluster0-shard-00-02-db0ox.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true',
 	'session': true,
 	'auth': true,

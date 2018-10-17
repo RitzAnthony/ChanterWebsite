@@ -46,6 +46,12 @@
 								{{else}}
 								<li><a href="/keystone/signin">Sign In</a></li>
 								{{/if}}
+								{{# each getAvailableLanguages}} 
+									<li {{#ifeq ../section key}}class="active"{{else}}{{/ifeq}}>
+										<a href="{{ href }}">{{ label }}</a>
+									</li>
+									<li><a href="">Sign In</a></li>
+								{{/each}}
 							</ul>
 						</div>
 					</div>
