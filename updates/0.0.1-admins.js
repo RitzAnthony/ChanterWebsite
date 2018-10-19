@@ -14,7 +14,8 @@ exports.create = {
 			'name.last': 'User',
 			'email': 'admin@chanter.com',
 			'password': 'admin',
-			'isAdmin': true
+			'isAdmin': true,
+			'roles': ['role_super_admin']
 		},
 	],
 };

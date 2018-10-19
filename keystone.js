@@ -36,8 +36,8 @@ keystone.init({
 	'session': true,
 	'auth': true,
 	'user model': 'User',
-	
-	
+	'role model': 'Role',                    // use whatever name for the role model
+	'permission model': 'Permission'        // use whatever name for the permission model
 });
 
 keystone.set('navigation', [{
