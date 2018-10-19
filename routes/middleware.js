@@ -23,13 +23,13 @@ exports.initLocals = function (req, res, next) {
 
 	var locals = res.locals;
 	//default navs
-	/*res.locals.navLinks = [
+	res.locals.navLinks = [
 		{label: 'Home', key: 'home', href: '/'},
 		{label: 'Gallery', key: 'gallery', href: '/gallery'},
 		{label: 'Events', key: 'events', href: '/events'},
 		{label: 'Contact', key: 'contact', href: '/contact'},
 		{label: 'Blog', key: 'blog', href: '/blog'},
-	];*/
+	];
 
 	res.locals.navLinks = keystone.get('navigation');
 
