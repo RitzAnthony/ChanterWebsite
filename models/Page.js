@@ -1,6 +1,6 @@
 var keystone = require('keystone');
 var Types = keystone.Field.Types;
-var localization = require('i18n');
+var langX = require('../routes/language.js');
 
 /**
  * Page Model
@@ -8,12 +8,7 @@ var localization = require('i18n');
  */
 
 var LanguageModel = keystone.list('Language');
-
-LanguageModel.model.find().exec(
-	function(err, langs){
-
-
-
+		
 var Page = new keystone.List('Page', {
 	map: {name: 'title'},
 	autokey: {path: 'slug', from: 'title', unique: true},
@@ -21,6 +16,7 @@ var Page = new keystone.List('Page', {
 
 Page.add({
 	title: {type: String, required: true},
+	language: {type: Types.Relationship, ref: 'Language'},
 	state: {type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true},
 	image: {type: Types.CloudinaryImage},
 	inNavigation: {type: Types.Boolean},
@@ -28,7 +24,6 @@ Page.add({
 		brief: {type: Types.Html, wysiwyg: true, height: 150},
 		extended: {type: Types.Html, wysiwyg: true, height: 400},
 	},
-	language: {type: Types.Select, options: langs , default: localization.getLocales()[0], index: true},
 });
 
 
@@ -57,9 +52,8 @@ Page.schema.post('save', function () {
 	//updateNavigation();
 });
 
-Page.defaultColumns = 'title, state|100%, in Navigation';
+Page.defaultColumns = 'title, language, state, inNavigation';
 Page.register();
 
 updateNavigation();
-	}
-);
+

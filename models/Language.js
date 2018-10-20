@@ -46,3 +46,4 @@ Language.defaultColumns = 'title';
 Language.register();
 
 updateNavigation();
+
