@@ -28,6 +28,14 @@ module.exports = function () {
 		}
 	};
 
+	_helpers.ifnoteq = function (a, b, options) {
+		if (a != b) { // eslint-disable-line eqeqeq
+			return options.fn(this);
+		} else {
+			return options.inverse(this);
+		}
+	};
+
 	/**
 	 * Port of Ghost helpers to support cross-theming
 	 * ==============================================

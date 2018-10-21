@@ -18,11 +18,12 @@ var keystone = require('keystone');
  the navigation in the header, you may wish to change this array
  or replace it with your own templates / logic.
  */
-exports.initLocals = async function (req, res, next) {
+exports.initLocals = function (req, res, next) {
 	var locals = res.locals;
 
 	if (req.query.language) {
-		keystone.get('language').currentLanguage = req.query.language;
+		var lang = keystone.get('language');
+			lang.currentLanguage = req.query.language;
 	}
 
 	//default navs
@@ -35,12 +36,11 @@ exports.initLocals = async function (req, res, next) {
 	];
 
 	res.locals.navLinks = keystone.get('navigation');
-	res.locals.currentlanguage = keystone.get('language').currentLanguage;
+	res.locals.currentLanguage = keystone.get('language').currentLanguage;
 	res.locals.availableLanguages = keystone.get('availableLanguages'); 
 
 	//adding dynamic site from Page model
 	res.locals.user = req.user;
-	
 	
 	next();
 };
