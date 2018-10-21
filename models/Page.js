@@ -1,13 +1,12 @@
 var keystone = require('keystone');
 var Types = keystone.Field.Types;
-var langX = require('../routes/language.js');
+var languageList = keystone.list('Language');
 
 /**
  * Page Model
  * ========
  */
 
-var LanguageModel = keystone.list('Language');
 		
 var Page = new keystone.List('Page', {
 	map: {name: 'title'},
@@ -30,17 +29,27 @@ Page.add({
 function updateNavigation() {
 	Page.model.find({
 		state: 'published',
-		inNavigation: true
+		inNavigation: true,
 	}, function(err, pages) {
 		console.log(pages.length);
 		pages.forEach(function(page, i) {
-			var navPoint = {label: page.title, key: page.title.toLowerCase(), href: '/pages/page/'+page.title.toLowerCase()};
-			var navLink = keystone.get('navigation');
-			
-			navLink.push(navPoint);
+			languageList.model.findById(page.language).exec(
+				function(err, language) {
+					var navPoint = {
+						label: page.title, 
+						key: page.title.toLowerCase(), 
+						href: '/pages/page/'+page.title.toLowerCase() + '-' +language.abbreviation,
+						language: language.abbreviation};
+					
+					var navLink = keystone.get('navigation');
+					
+					navLink.push(navPoint);
+					
+				}
+			);
 		});
 	});
-}
+};
 
 Page.schema.virtual('content.full').get(function () {
 	return this.content.extended || this.content.brief;

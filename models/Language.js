@@ -18,19 +18,7 @@ Language.add({
 	abbreviation: {type: String},
 });
 
-//TODO 
-function updateNavigation() {
-	Language.model.find({
-	}, function(err, languages) {
-		console.log(languages.length);
-		languages.forEach(function(page, i) {
-			var navPoint = {label: page.title, key: page.title.toLowerCase(), href: '/languages/page/'+page.title.toLowerCase()};
-			var navLink = keystone.get('navigation');
 
-			navLink.push(navPoint);
-		});
-	});
-}
 
 Language.schema.virtual('content.full').get(function () {
 	return this.content.extended || this.content.brief;
@@ -45,5 +33,5 @@ Language.schema.post('save', function () {
 Language.defaultColumns = 'title';
 Language.register();
 
-updateNavigation();
+
 

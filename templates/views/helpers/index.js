@@ -119,12 +119,17 @@ module.exports = function () {
 	 * Anthony Ritz 
 	 * Returns all languages from DB
 	 */
-
-	// block rendering for keystone admin css
-	_helpers.getAvailableLanguages = function (user, options) {
+	_helpers.getAvailableLanguages = function (options) {
 		
-		return 'undefined';
+
+		return keystone.get('navigation');
 	};
+
+	 function getLangs(callback) {
+		var languageList = keystone.list('Language');
+		languageList.model.find().exec().then((langs) => callback(langs));
+
+	}
 
 	/**
 	 * KeystoneJS specific helpers

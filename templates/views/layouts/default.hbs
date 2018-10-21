@@ -35,23 +35,31 @@
 						<div class="collapse navbar-collapse">
 							<ul class="nav navbar-nav navbar-left">
 									{{# each navLinks}}
-									<li {{#ifeq ../section key}}class="active"{{else}}{{/ifeq}}>
-										<a href="{{ href }}">{{ label }}</a>
-									</li>
+										{{#if language}}
+											{{#ifeq currentlanguage ../language}}
+												<li {{#ifeq ../section key}}class="active"{{else}}{{/ifeq}}>
+													<a href="{{ href }}">{{ label }}</a>
+												</li>
+											{{/ifeq}}
+										{{else}}
+											<li {{#ifeq ../section key}}class="active"{{else}}{{/ifeq}}>
+												<a href="{{ href }}">{{ label }}</a>
+											</li>
+										{{/if}}
+									
 								{{/each}}
 							</ul>
 							<ul class="nav navbar-nav navbar-right">
+								{{# each availableLanguages}}
+									<li>
+										<a href='?language={{abbreviation}}'>{{title}}</a>
+									</li>
+								{{/each}}
 								{{#if user}}
 								<li><a href="/keystone/signout">Sign Out</a></li>
 								{{else}}
 								<li><a href="/keystone/signin">Sign In</a></li>
 								{{/if}}
-								{{# each getAvailableLanguages}} 
-									<li {{#ifeq ../section key}}class="active"{{else}}{{/ifeq}}>
-										<a href="{{ href }}">{{ label }}</a>
-									</li>
-									<li><a href="">Sign In</a></li>
-								{{/each}}
 							</ul>
 						</div>
 					</div>

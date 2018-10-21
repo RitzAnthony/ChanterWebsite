@@ -6,7 +6,13 @@ require('dotenv').config();
 var keystone = require('keystone');
 var handlebars = require('express-handlebars');
 
+/*var express = require('express'),
+	app = express(),
+	cookieParser = require('cookie-parser'),
+	cookieLanguage = 'myLanguage';
 
+app.use(cookieParser(cookieLanguage));
+keystone.app = app; */
 
 // Initialise Keystone with your project's configuration.
 // See http://keystonejs.com/guide/config for available options
@@ -39,9 +45,16 @@ keystone.init({
 	'session': true,
 	'auth': true,
 	'user model': 'User',
-	
-	
+	'default region': 'de'
 });
+
+keystone.set('language', {'currentLanguage': 'de'});
+
+var availableLanguages = [
+	{title: 'Deutsch', abbreviation: 'de'},
+	{title: 'Francais', abbreviation: 'fr'}
+];
+keystone.set('availableLanguages', availableLanguages);
 
 keystone.set('navigation', [{
 	label: 'Home',
@@ -107,6 +120,5 @@ if (!process.env.MAILGUN_API_KEY || !process.env.MAILGUN_DOMAIN) {
 		+ '\n\nCreate a mailgun account and add the credentials to the .env file to'
 		+ '\nset up your mailgun integration');
 }
-
 
 keystone.start();
