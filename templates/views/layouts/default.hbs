@@ -36,7 +36,7 @@
 							<ul class="nav navbar-nav navbar-left">
 									{{# each navLinks}}
 										{{#ifeq  language undefined}}
-											<li {{#ifeq ../section key}}class="active"{{else}}{{/ifeq}}>
+											<li id='test' {{#ifeq ../section key}}class="active"{{else}}{{/ifeq}}>
 												<a href="{{ href }}">{{ label }}</a>
 											</li>
 										{{/ifeq}}

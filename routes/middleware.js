@@ -19,12 +19,21 @@ var keystone = require('keystone');
  or replace it with your own templates / logic.
  */
 exports.initLocals = function (req, res, next) {
-	var locals = res.locals;
+	var locals = res.locals
 
-	if (req.query.language) {
-		var lang = keystone.get('language');
+	var lang = keystone.get('language');
+
+	if (req.query.language && req.query.language != lang.currentLanguage ) {
 			lang.currentLanguage = req.query.language;
+		var navigs = keystone.get('navigation');
+		var searchedUrl = req.originalUrl.split("?")[0];
+		var result = navigs.find((nav)=>{
+				  return nav.href == searchedUrl});
+			
+				res.redirect(result.foreignPageUrl);
+			
 	}
+	else{
 
 	//default navs
 	res.locals.navLinks = [
@@ -43,6 +52,7 @@ exports.initLocals = function (req, res, next) {
 	res.locals.user = req.user;
 	
 	next();
+	}
 };
 
 /**
