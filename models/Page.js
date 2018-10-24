@@ -1,10 +1,12 @@
 var keystone = require('keystone');
 var Types = keystone.Field.Types;
+var languageList = keystone.list('Language');
 
 /**
  * Page Model
- * ==========
+ * ========
  */
+
 
 var Page = new keystone.List('Page', {
 	map: {name: 'title'},
@@ -13,6 +15,8 @@ var Page = new keystone.List('Page', {
 
 Page.add({
 	title: {type: String, required: true},
+	language: {type: Types.Relationship, ref: 'Language'},
+	foreignPage: {type: Types.Relationship, ref: 'Page'},
 	state: {type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true},
 	image: {type: Types.CloudinaryImage},
 	inNavigation: {type: Types.Boolean},
@@ -22,20 +26,33 @@ Page.add({
 	},
 });
 
+
 function updateNavigation() {
 	Page.model.find({
 		state: 'published',
-		inNavigation: true
+		inNavigation: true,
 	}, function(err, pages) {
 		console.log(pages.length);
 		pages.forEach(function(page, i) {
-			var navPoint = {label: page.title, key: page.title.toLowerCase(), href: '/pages/page/'+page.title.toLowerCase()};
-			var navLink = keystone.get('navigation');
-			
-			navLink.push(navPoint);
-		});
+			Page.model.findById(page.foreignPage).exec(function(err, foreignPage) {
+				languageList.model.findById(page.language).exec(
+					function(err, language) {
+						var navPoint = {
+							label: page.title,
+							key: page.title.toLowerCase(),
+							href: '/pages/page/'+page.slug.toLowerCase().replace(" ","%20"),
+							language: language.abbreviation,
+							foreignPageUrl: '/pages/page/'+foreignPage.slug.toLowerCase().replace(" ","%20")};
+
+						var navLink = keystone.get('navigation');
+
+						navLink.push(navPoint);
+					}
+				);
+			});
+		}) ;
 	});
-}
+};
 
 Page.schema.virtual('content.full').get(function () {
 	return this.content.extended || this.content.brief;
@@ -47,7 +64,8 @@ Page.schema.post('save', function () {
 	//updateNavigation();
 });
 
-Page.defaultColumns = 'title, state|100%, in Navigation';
+Page.defaultColumns = 'title, language, state, inNavigation';
 Page.register();
 
 updateNavigation();
+

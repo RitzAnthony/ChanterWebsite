@@ -1,4 +1,4 @@
-FROM node:8
+FROM node:8 
 MAINTAINER Anthony Ritz <anthony.ritz@students.hevs.ch>
 # Create app directory
 WORKDIR /usr/src/app

@@ -28,6 +28,14 @@ module.exports = function () {
 		}
 	};
 
+	_helpers.ifnoteq = function (a, b, options) {
+		if (a != b) { // eslint-disable-line eqeqeq
+			return options.fn(this);
+		} else {
+			return options.inverse(this);
+		}
+	};
+
 	/**
 	 * Port of Ghost helpers to support cross-theming
 	 * ==============================================
@@ -114,6 +122,22 @@ module.exports = function () {
 		}
 		return new hbs.SafeString(output);
 	};
+
+	/**
+	 * Anthony Ritz 
+	 * Returns all languages from DB
+	 */
+	_helpers.getAvailableLanguages = function (options) {
+		
+
+		return keystone.get('navigation');
+	};
+
+	 function getLangs(callback) {
+		var languageList = keystone.list('Language');
+		languageList.model.find().exec().then((langs) => callback(langs));
+
+	}
 
 	/**
 	 * KeystoneJS specific helpers

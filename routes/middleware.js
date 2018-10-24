@@ -19,9 +19,22 @@ var keystone = require('keystone');
  or replace it with your own templates / logic.
  */
 exports.initLocals = function (req, res, next) {
+	var locals = res.locals
 
+	var lang = keystone.get('language');
 
-	var locals = res.locals;
+	if (req.query.language && req.query.language != lang.currentLanguage ) {
+			lang.currentLanguage = req.query.language;
+		var navigs = keystone.get('navigation');
+		var searchedUrl = req.originalUrl.split("?")[0];
+		var result = navigs.find((nav)=>{
+				  return nav.href == searchedUrl});
+			
+				res.redirect(result.foreignPageUrl);
+			
+	}
+	else{
+
 	//default navs
 	res.locals.navLinks = [
 		{label: 'Home', key: 'home', href: '/'},
@@ -32,11 +45,14 @@ exports.initLocals = function (req, res, next) {
 	];
 
 	res.locals.navLinks = keystone.get('navigation');
+	res.locals.currentLanguage = keystone.get('language').currentLanguage;
+	res.locals.availableLanguages = keystone.get('availableLanguages'); 
 
-	
 	//adding dynamic site from Page model
 	res.locals.user = req.user;
+	
 	next();
+	}
 };
 
 /**

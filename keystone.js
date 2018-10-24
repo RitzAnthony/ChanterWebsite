@@ -6,6 +6,14 @@ require('dotenv').config();
 var keystone = require('keystone');
 var handlebars = require('express-handlebars');
 
+/*var express = require('express'),
+	app = express(),
+	cookieParser = require('cookie-parser'),
+	cookieLanguage = 'myLanguage';
+
+app.use(cookieParser(cookieLanguage));
+keystone.app = app; */
+
 // Initialise Keystone with your project's configuration.
 // See http://keystonejs.com/guide/config for available options
 // and documentation.
@@ -31,7 +39,8 @@ keystone.init({
 	'emails': 'templates/emails',
 
 	'auto update': true,
-	'mongo': 'mongodb://mongo:27017',
+	//'mongo': 'mongodb://mongo:27017',
+	'mongo': 'mongodb://localhost:27017',
 	//'mongo': 'mongodb://hans:Qwertzuiop123@cluster0-shard-00-00-db0ox.mongodb.net:27017,cluster0-shard-00-01-db0ox.mongodb.net:27017,cluster0-shard-00-02-db0ox.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true',
 	'session': true,
 	'auth': true,
@@ -39,6 +48,15 @@ keystone.init({
 	'role model': 'Role',                    // use whatever name for the role model
 	'permission model': 'Permission'        // use whatever name for the permission model
 });
+
+
+keystone.set('language', {'currentLanguage': 'de'});
+
+var availableLanguages = [
+	{title: 'Deutsch', abbreviation: 'de'},
+	{title: 'Francais', abbreviation: 'fr'}
+];
+keystone.set('availableLanguages', availableLanguages);
 
 keystone.set('navigation', [{
 	label: 'Home',
