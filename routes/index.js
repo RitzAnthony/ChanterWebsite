@@ -19,11 +19,14 @@
  */
 
 var keystone = require('keystone');
+var i18n = require('i18n');
 var middleware = require('./middleware');
 var importRoutes = keystone.importer(__dirname);
 
 // Common Middleware
-keystone.pre('routes', middleware.initLocals);
+
+keystone.pre('routes', i18n.init);
+//keystone.pre('routes', middleware.initLocals);
 keystone.pre('render', middleware.flashMessages);
  
 // Import Route Controllers

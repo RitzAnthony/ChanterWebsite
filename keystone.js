@@ -4,6 +4,7 @@ require('dotenv').config();
 
 // Require keystone
 var keystone = require('keystone');
+var i18n = require('i18n');
 var handlebars = require('express-handlebars');
 
 /*var express = require('express'),
@@ -17,6 +18,15 @@ keystone.app = app; */
 // Initialise Keystone with your project's configuration.
 // See http://keystonejs.com/guide/config for available options
 // and documentation.
+
+
+i18n.configure({
+	locales:['fr', 'de'],
+	cookie: 'locale',
+	defaultLocale: 'fr',
+	directory: __dirname + '/locales',
+	queryParameter: 'lang',
+});
 
 keystone.init({
 	'name': 'ChanterProj',
@@ -45,10 +55,7 @@ keystone.init({
 	'session': true,
 	'auth': true,
 	'user model': 'User',
-	'role model': 'Role',                    // use whatever name for the role model
-	'permission model': 'Permission'        // use whatever name for the permission model
 });
-
 
 keystone.set('language', {'currentLanguage': 'de'});
 
@@ -104,10 +111,10 @@ keystone.set('routes', require('./routes'));
 // Configure the navigation bar in Keystone's Admin UI
 keystone.set('nav', {
 	posts: ['posts', 'post-categories'],
-	galleries: 'galleries',
-	enquiries: 'enquiries',
-	users: 'users',
+	choirs: ['choirs', 'choir-types', 'choir-groups'],
+	users: ['users', 'user-groups'],
 	events: 'events',
+	enquiries: 'enquiries',
 });
 
 // Start Keystone to connect to your database and initialise the web server

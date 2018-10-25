@@ -1,5 +1,6 @@
 var keystone = require('keystone');
 var Types = keystone.Field.Types;
+var __ = require('../helpers/index').__;
 
 /**
  * User Model
@@ -10,6 +11,12 @@ var Types = keystone.Field.Types;
 var User = new keystone.List('User');
 
 User.add({
+
+	email: {type: Types.Email, initial: true, required: true, unique: true, index: true},
+	password: {type: Types.Password, initial: true, required: true},
+	
+	group: {type: Types.Relationship, ref: 'UserGroup', index: true, many: true, label: __('Group')},
+	
 	title: {type: Types.Select, options: 'Mr., M.', default: 'Mr.'},
 	name: {type: Types.Name, required: true, index: true},
 	function: {type: String},
@@ -23,11 +30,6 @@ User.add({
 	fax: {type: String},
 	phone_mobile: {type: String},
 	
-	email: {type: Types.Email, initial: true, required: true, unique: true, index: true},
-	password: {type: Types.Password, initial: true, required: true},
-
-
-	roles: { type: Types.Relationship, ref: 'Role', many: true },
 	
 	
 }, 'Permissions', {

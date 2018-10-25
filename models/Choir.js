@@ -1,58 +1,59 @@
 var keystone = require('keystone');
 var Types = keystone.Field.Types;
 var Choir = new keystone.List('Choir');
+var __ = require('../helpers/index').__;
 
 Choir.add({
-	name: {type: String, required: true, initial: true},
-	npa: {type: String},
-	place: {type: String},
+	name: {type: String, required: true, initial: true, label: __('Name')},
+	npa: {type: String, label: __('NPA')},
+	place: {type: String, label: __('Place')},
 	
-	director: {type: Types.Relationship, ref: 'User', index: true},
-	president: {type: Types.Relationship, ref: 'User', index: true},
-	secretary: {type: Types.Relationship, ref: 'User', index: true},
-	cashier: {type: Types.Relationship, ref: 'User', index: true},
+	director: {type: Types.Relationship, ref: 'User', index: true, label: __('Director')},
+	president: {type: Types.Relationship, ref: 'User', index: true, label: __('President')},
+	secretary: {type: Types.Relationship, ref: 'User', index: true, label: __('Secretary')},
+	cashier: {type: Types.Relationship, ref: 'User', index: true, label: __('Cashier')},
 
 
-	type: { type: Types.Select, options: 'CX, CD, CH, CJ, CE', default: 'CX' },
-	type2: {type: String},
+	type: {type: Types.Relationship, ref: 'ChoirType', index: true, label: __('Type')},
+	type2: {type: String, label: __('Type 2')},
 	
 	//effective: {type: Types.Relationship, ref: 'Effectif', many: true},
 	//amende: {type: Types.Relationship, ref: 'Amende', many: true},
 	
-	foudation_year: {type: Types.Number, label: 'Year of foudation'},
+	foudation_year: {type: Types.Number, label: __('Year of foudation')},
 	
-	ch_eglise: { type: Types.Boolean },
-	ch_gospel: { type: Types.Boolean },
+	ch_eglise: { type: Types.Boolean, label: __('Ch. eglise') },
+	ch_gospel: { type: Types.Boolean, label: __('Ch. gospel')},
 	
-	is_fc_member: {type: Types.Boolean},
-	date_fc_entry: {type: Types.Date},
+	is_fc_member: {type: Types.Boolean, label: __('Is member of the federation')},
+	date_fc_entry: {type: Types.Date, label: __('Federation entry date')},
 	
-	group: {type: String},
-	date_group_entry: {type: Types.Date},
+	group: {type: Types.Relationship, ref: 'ChoirGroup', index: true, label: __('Group')},
+	date_group_entry: {type: Types.Date, label: __('Group entry date')},
 	
-	is_usc_member: {type: Types.Boolean},
-	date_usc_entry: {type: Types.Date},
+	is_usc_member: {type: Types.Boolean, label: __('Is member of the USC')},
+	date_usc_entry: {type: Types.Date, label: __('USC entry date')},
 	
-	contact: {type: Types.Relationship, ref: 'User'},
+	contact: {type: Types.Relationship, ref: 'User', label: __('Contact user')},
 	
 	// TODO : wait for merging the language branch to have all lang related stuff
 	//lang: {type: Types.Relationship, ref: 'Language'},
 	
-	remarque: {type: Types.Text},
+	remarque: {type: Types.Text, label: __('Remarque')},
 	
-	website: {type: Types.Url},
+	website: {type: Types.Url, label: __('Website')},
 	
 	//
-	dekanat: {type: String},
+	dekanat: {type: String, label: __('Dekanat')},
 	
-	ocv_list_2014: {type: Types.Boolean},
+	ocv_list_2014: {type: Types.Boolean, label: __('OCV list 2014'), hidden: true},
 	
-	usd_id: {type: String},
-	usd_password: {type: String},
+	usc_id: {type: String, label: __('USC ID')},
+	usc_password: {type: String, label: __('USC Password')},
 	
-	ag2016: {type: Types.Number},
+	ag2016: {type: Types.Number, label: __('AG 2016')},
 	
-	updated_at: {type: Types.Date},
+	updated_at: {type: Types.Date, hidden: true},
 });
 
 Choir.schema.pre('save', function(next) {
