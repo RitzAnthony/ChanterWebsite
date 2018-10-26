@@ -6,7 +6,8 @@ exports = module.exports = function (req, res) {
 	var locals = res.locals;
 
 	// Set locals
-	locals.section = 'pages';
+	//locals.section = 'pages';
+	locals.section = '';
 	locals.filters = {
 		page: req.params.page,
 	};
@@ -15,12 +16,27 @@ exports = module.exports = function (req, res) {
 	};
 
 	// Load the current page
-	view.on('init', function (next) {
-
-		var q = keystone.list('Page').model.findOne({
-			state: 'published',
-			slug: locals.filters.page,
+	view.on('init', async function (next) {
+		var currentLanguage = await keystone.list('Language').model.findOne({
+			abbreviation: keystone.get('language').currentLanguage,
 		});
+			
+			keystone.get('language').currentLanguage;
+
+			 
+		var q; 
+		if (locals.filters.page == undefined){
+			q = keystone.list('Page').model.findOne({
+				isIndexPage: true,
+				language: currentLanguage._id,
+			});
+		} else {
+			q = keystone.list('Page').model.findOne({
+				state: 'published',
+				slug: locals.filters.page,
+				language: currentLanguage._id,
+			});
+		}
 
 		q.exec(function (err, result) {
 			locals.data.page = result;

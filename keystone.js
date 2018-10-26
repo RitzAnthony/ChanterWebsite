@@ -57,14 +57,6 @@ keystone.init({
 	'user model': 'User',
 });
 
-keystone.set('language', {'currentLanguage': 'de'});
-
-var availableLanguages = [
-	{title: 'Deutsch', abbreviation: 'de'},
-	{title: 'Francais', abbreviation: 'fr'}
-];
-keystone.set('availableLanguages', availableLanguages);
-
 keystone.set('navigation', [{
 	label: 'Home',
 	key: 'home',
@@ -93,6 +85,18 @@ keystone.set('navigation', [{
 
 // Load your project's Models
 keystone.import('models');
+
+
+
+getLanguages();
+function getLanguages() {
+	keystone.list('Language').model.find().exec((err, languages) =>{
+		keystone.set('availableLanguages', languages);
+		keystone.set('language', {'currentLanguage': languages[0].abbreviation});
+	});
+	
+}
+
 
 // Setup common locals for your templates. The following are required for the
 // bundled templates and layouts. Any runtime locals (that should be set uniquely

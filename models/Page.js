@@ -15,6 +15,7 @@ var Page = new keystone.List('Page', {
 
 Page.add({
 	title: {type: String, required: true},
+	isIndexPage: {type: Types.Boolean, default: false}, 
 	language: {type: Types.Relationship, ref: 'Language'},
 	foreignPage: {type: Types.Relationship, ref: 'Page'},
 	state: {type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true},
@@ -37,12 +38,15 @@ function updateNavigation() {
 			Page.model.findById(page.foreignPage).exec(function(err, foreignPage) {
 				languageList.model.findById(page.language).exec(
 					function(err, language) {
+						var foreignUrl = (foreignPage != undefined)? 
+							'/'+foreignPage.slug.toLowerCase().replace(" ","") : '/';
+						
 						var navPoint = {
 							label: page.title,
 							key: page.title.toLowerCase(),
-							href: '/pages/page/'+page.slug.toLowerCase().replace(" ","%20"),
+							href: (isIndexPage) ? '/' :  '/'+page.slug.toLowerCase().replace(" ",""),
 							language: language.abbreviation,
-							foreignPageUrl: '/pages/page/'+foreignPage.slug.toLowerCase().replace(" ","%20")};
+							foreignPageUrl: foreignUrl};
 
 						var navLink = keystone.get('navigation');
 
