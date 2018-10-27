@@ -29,6 +29,7 @@ Page.add({
 
 
 function updateNavigation() {
+	keystone.set('navigation', []);
 	Page.model.find({
 		state: 'published',
 		inNavigation: true,
@@ -44,9 +45,9 @@ function updateNavigation() {
 						var navPoint = {
 							label: page.title,
 							key: page.title.toLowerCase(),
-							href: (isIndexPage) ? '/' :  '/'+page.slug.toLowerCase().replace(" ",""),
+							href: (page.isIndexPage) ? '/' :  '/'+page.slug.toLowerCase().replace(" ",""),
 							language: language.abbreviation,
-							foreignPageUrl: foreignUrl};
+							foreignPageUrl:(page.isIndexPage) ? '/' : foreignUrl};
 
 						var navLink = keystone.get('navigation');
 
@@ -65,7 +66,7 @@ Page.schema.virtual('content.full').get(function () {
 // Update navigation on page save
 Page.schema.post('save', function () {
 	console.log('Save Post');
-	//updateNavigation();
+	updateNavigation();
 });
 
 Page.defaultColumns = 'title, language, state, inNavigation';

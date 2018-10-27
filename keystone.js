@@ -56,8 +56,9 @@ keystone.init({
 	'auth': true,
 	'user model': 'User',
 });
+keystone.set('navigation', []);
 
-keystone.set('navigation', [{
+/*keystone.set('navigation', [{ TODO this can be removed, static navigation will be set in middleware
 	label: 'Home',
 	key: 'home',
 	href: '/'
@@ -81,7 +82,7 @@ keystone.set('navigation', [{
 	label: 'Contact',
 	key: 'contact',
 	href: '/contact'
-}]);
+}]); */
 
 // Load your project's Models
 keystone.import('models');

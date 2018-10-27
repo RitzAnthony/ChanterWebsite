@@ -24,36 +24,36 @@ exports.initLocals = function (req, res, next) {
 	var lang = keystone.get('language');
 
 	if (req.query.language && req.query.language != lang.currentLanguage ) {
-			lang.currentLanguage = req.query.language;
+		lang.currentLanguage = req.query.language;
 		var navigs = keystone.get('navigation');
 		var searchedUrl = req.originalUrl.split("?")[0];
 		var result = navigs.find((nav)=>{
-				  return nav.href == searchedUrl}).foreignPageUrl;
-				if(result == undefined){
-					result = '/';
-				}
-				res.redirect(result);
-			
+			return nav.href == searchedUrl}).foreignPageUrl;
+		if(result == undefined){
+			result = '/';
+		}
+		res.redirect(result);
+
 	}
 	else{
 
-	//default navs
-	res.locals.navLinks = [
-		{label: 'Home', key: 'home', href: '/'},
-		{label: 'Gallery', key: 'gallery', href: '/gallery'},
-		{label: 'Events', key: 'events', href: '/events'},
-		{label: 'Contact', key: 'contact', href: '/contact'},
-		{label: 'Blog', key: 'blog', href: '/blog'},
-	];
+		//default navs
+		/*res.locals.navLinks = [
+            {label: 'Home', key: 'home', href: '/'},
+            {label: 'Gallery', key: 'gallery', href: '/gallery'},
+            {label: 'Events', key: 'events', href: '/events'},
+            {label: 'Contact', key: 'contact', href: '/contact'},
+            {label: 'Blog', key: 'blog', href: '/blog'},
+        ];*/
+		
+		res.locals.navLinks = keystone.get('navigation');
+		res.locals.currentLanguage = keystone.get('language').currentLanguage;
+		res.locals.availableLanguages = keystone.get('availableLanguages');
 
-	res.locals.navLinks = keystone.get('navigation');
-	res.locals.currentLanguage = keystone.get('language').currentLanguage;
-	res.locals.availableLanguages = keystone.get('availableLanguages'); 
+		//adding dynamic site from Page model
+		res.locals.user = req.user;
 
-	//adding dynamic site from Page model
-	res.locals.user = req.user;
-	
-	next();
+		next();
 	}
 };
 
