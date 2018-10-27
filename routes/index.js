@@ -43,7 +43,7 @@ exports = module.exports = function (app) {
 	app.get('/gallery', routes.views.gallery);
 	app.get('/events', routes.views.events);
 	app.get('/choir', routes.views.choir);
-	app.get('/contact', routes.views.contact);
+	app.all('/contact', routes.views.contact);
 	//all other routes go to the dynamic pages
 	app.all('/:page', routes.views.page);
 	
