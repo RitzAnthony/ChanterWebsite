@@ -37,16 +37,26 @@ exports.initLocals = function (req, res, next) {
 	}
 	else{
 
-		//default navs
-		/*res.locals.navLinks = [
-            {label: 'Home', key: 'home', href: '/'},
+		//default static navs
+		var navLinks = [
+            
             {label: 'Gallery', key: 'gallery', href: '/gallery'},
             {label: 'Events', key: 'events', href: '/events'},
             {label: 'Contact', key: 'contact', href: '/contact'},
             {label: 'Blog', key: 'blog', href: '/blog'},
-        ];*/
+        ];
 		
-		res.locals.navLinks = keystone.get('navigation');
+		navLinks.push.apply(navLinks,keystone.get('navigation'));
+
+		//move the index pages to to the top of the array, so the are displayed on the left
+		for (let i = 0; i < navLinks.length; i++) {
+			if (navLinks[i].href == '/') {
+				navLinks.splice(0, 0, navLinks.splice(i, 1)[0]);
+			}
+		}
+
+		
+		res.locals.navLinks = navLinks;
 		res.locals.currentLanguage = keystone.get('language').currentLanguage;
 		res.locals.availableLanguages = keystone.get('availableLanguages');
 
