@@ -55,10 +55,10 @@ Newsletter.schema.methods.sendNotificationEmail = function (callback) {
 		}).send({
 			to: admins,
 			from: {
-				name: 'ChanterProj',
+				name: 'www.chanter.ch',
 				email: 'contact@chanterproj.com',
 			},
-			subject: 'New Newsletter for ChanterProj',
+			subject: 'New Newsletter for www.chanter.ch',
 			enquiry: newslatter,
 			brand: brand,
 			layout: false,

@@ -29,8 +29,8 @@ i18n.configure({
 });
 
 keystone.init({
-	'name': 'ChanterProj',
-	'brand': 'ChanterProj',
+	'name': 'www.chanter.ch',
+	'brand': 'www.chanter.ch',
 
 	'less': 'public',
 	'static': 'public',
@@ -118,11 +118,14 @@ keystone.set('routes', require('./routes'));
 
 // Configure the navigation bar in Keystone's Admin UI
 keystone.set('nav', {
+	pages: 'pages',
+	languages: 'languages',
 	posts: ['posts', 'post-categories'],
 	choirs: ['choirs', 'choir-types', 'choir-groups'],
 	users: ['users', 'user-groups'],
 	events: 'events',
 	enquiries: 'enquiries',
+	newsletters: 'newsletters',
 });
 
 // Start Keystone to connect to your database and initialise the web server
