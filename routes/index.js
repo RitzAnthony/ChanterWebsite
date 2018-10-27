@@ -38,13 +38,14 @@ var routes = {
 exports = module.exports = function (app) {
 	// Views
 	app.get('/', routes.views.page);
-	app.get('/:page', routes.views.page);
 	app.get('/blog/:category?', routes.views.blog);
 	app.get('/blog/post/:post', routes.views.post);
 	app.get('/gallery', routes.views.gallery);
 	app.get('/events', routes.views.events);
 	app.get('/choir', routes.views.choir);
-	app.all('/contact', routes.views.contact);
+	app.get('/contact', routes.views.contact);
+	//all other routes go to the dynamic pages
+	app.all('/:page', routes.views.page);
 	
 
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
