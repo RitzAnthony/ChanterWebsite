@@ -84,6 +84,9 @@ keystone.set('navigation', []);
 	href: '/contact'
 }]); */
 
+// Set the default theme
+keystone.set('theme', 'Cerulean');
+
 // Load your project's Models
 keystone.import('models');
 

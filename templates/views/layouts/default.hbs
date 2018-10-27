@@ -6,8 +6,10 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>ChanterProj</title>
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-		<link href="/styles/site.min.css" rel="stylesheet">
-
+		<!--<link href="/styles/site.min.css" rel="stylesheet"> -->
+		<link href="/styles/{{theme}}.min.css" rel="stylesheet">
+		
+		
 		{{!-- This file provides the default styling for the KeystoneJS Content Editor
 			- only renders when user is logged in and admin--}}
 		{{{isAdminEditorCSS user}}}
@@ -48,6 +50,23 @@
 								{{/each}}
 							</ul>
 							<ul class="nav navbar-nav navbar-right">
+								{{#if user.isAdmin}}
+								
+								<li class="dropdown">
+									<a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" 
+									   aria-haspopup="true" aria-expanded="false">
+										Themes 
+										<span class="caret"></span>
+									</a>
+									<ul class="dropdown-menu">
+										{{# each themes}}
+											<li>
+												<a href='?theme={{this}}'>{{this}}</a>
+											</li>
+										{{/each}}
+									</ul>
+								</li>
+								{{/if}}
 								{{# each availableLanguages}}
 									<li>
 										<a href='?language={{abbreviation}}'>{{title}}</a>

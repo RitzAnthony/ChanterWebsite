@@ -39,13 +39,13 @@ exports.initLocals = function (req, res, next) {
 
 		//default static navs
 		var navLinks = [
-            
-            {label: 'Gallery', key: 'gallery', href: '/gallery'},
-            {label: 'Events', key: 'events', href: '/events'},
-            {label: 'Contact', key: 'contact', href: '/contact'},
-            {label: 'Blog', key: 'blog', href: '/blog'},
-        ];
-		
+			//TODO add foreignPageUrl attribute to this navlinks, otherwise language redirection will fail
+			{label: 'Gallery', key: 'gallery', href: '/gallery'},
+			{label: 'Events', key: 'events', href: '/events'},
+			{label: 'Contact', key: 'contact', href: '/contact'},
+			{label: 'Blog', key: 'blog', href: '/blog'},
+		];
+
 		navLinks.push.apply(navLinks,keystone.get('navigation'));
 
 		//move the index pages to to the top of the array, so the are displayed on the left
@@ -55,13 +55,31 @@ exports.initLocals = function (req, res, next) {
 			}
 		}
 
-		
+
 		res.locals.navLinks = navLinks;
 		res.locals.currentLanguage = keystone.get('language').currentLanguage;
 		res.locals.availableLanguages = keystone.get('availableLanguages');
 
 		//adding dynamic site from Page model
 		res.locals.user = req.user;
+
+		//Set the changed theme or the current theme
+		if (req.query.theme) {
+			res.locals.theme = req.query.theme;
+			keystone.set('theme', req.query.theme);
+		}
+		else {
+			res.locals.theme = keystone.get('theme')
+		}
+		
+		//adding selectable themes for the admin
+		res.locals.themes = [
+			'Flatly',
+			'Cerulean',
+			'Journal',
+			'Simplex',
+			'United',
+		];
 
 		next();
 	}
