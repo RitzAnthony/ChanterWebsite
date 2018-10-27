@@ -7,8 +7,6 @@ lib-cov
 *.pid
 *.gz
 
-*.min.css
-
 pids
 logs
 results
