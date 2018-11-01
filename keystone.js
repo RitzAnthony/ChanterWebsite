@@ -7,7 +7,7 @@ var keystone = require('keystone');
 var i18n = require('i18n');
 var handlebars = require('express-handlebars');
 
-/*var express = require('express'),
+/*var express = require('express'), //TODO (Autor:Anthony) i think this can be removed
 	app = express(),
 	cookieParser = require('cookie-parser'),
 	cookieLanguage = 'myLanguage';

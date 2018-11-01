@@ -42,10 +42,12 @@ function updateNavigation() {
 						var foreignUrl = (foreignPage != undefined)? 
 							'/'+foreignPage.slug.toLowerCase().replace(" ","") : '/';
 						
+						var url = (page.isIndexPage) ? '/' :  '/'+page.slug.toLowerCase().replace(" ","");
+						
 						var navPoint = {
 							label: page.title,
-							key: page.title.toLowerCase(),
-							href: (page.isIndexPage) ? '/' :  '/'+page.slug.toLowerCase().replace(" ",""),
+							key: page.slug,
+							href: url,
 							language: language.abbreviation,
 							foreignPageUrl:(page.isIndexPage) ? '/' : foreignUrl};
 

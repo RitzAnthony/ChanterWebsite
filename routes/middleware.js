@@ -42,6 +42,7 @@ exports.initLocals = function (req, res, next) {
 			//TODO add foreignPageUrl attribute to this navlinks, otherwise language redirection will fail
 			{label: 'Gallery', key: 'gallery', href: '/gallery'},
 			{label: 'Events', key: 'events', href: '/events'},
+			{label: 'Choirs', key: 'choir', href: '/choirs'},
 			{label: 'Blog', key: 'blog', href: '/blog'},
 			{label: 'Contact', key: 'contact', href: '/contact'},
 			{label: 'Newsletter', key: 'newsletter', href: '/newsletter'}

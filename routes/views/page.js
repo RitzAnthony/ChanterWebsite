@@ -40,6 +40,7 @@ exports = module.exports = function (req, res) {
 
 		q.exec(function (err, result) {
 			locals.data.page = result;
+			locals.section = result.slug;
 			next(err);
 		});
 
