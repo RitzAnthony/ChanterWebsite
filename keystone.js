@@ -56,7 +56,12 @@ keystone.init({
 	'auth': true,
 	'user model': 'User',
 });
+
+//tabs of the navigation bar
 keystone.set('navigation', []);
+
+//Used for redirection from one language to an other
+keystone.set('foreignReferences',[]);
 
 /*keystone.set('navigation', [{ TODO this can be removed, static navigation will be set in middleware
 	label: 'Home',
@@ -98,9 +103,7 @@ function getLanguages() {
 		keystone.set('availableLanguages', languages);
 		keystone.set('language', {'currentLanguage': languages[0].abbreviation});
 	});
-	
 }
-
 
 // Setup common locals for your templates. The following are required for the
 // bundled templates and layouts. Any runtime locals (that should be set uniquely

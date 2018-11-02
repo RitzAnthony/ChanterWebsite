@@ -38,9 +38,12 @@ function updateNavigation() {
 		dropdownList.model.find().exec(function(err, dropdowns) {
 			var navLink = keystone.get('navigation');
 
-			dropdowns.forEach((dropdown) => {
+			dropdowns.forEach(async (dropdown) => {
+			var currentLanguage =await languageList.model.findById(dropdown.language).exec(); 
+				
 			var navPoint = {
 				label: dropdown.name,
+				language: currentLanguage.abbreviation,
 				isDropdown: true,
 				pages: []};
 			

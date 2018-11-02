@@ -38,17 +38,17 @@
 					<ul class="nav navbar-nav navbar-left">
 						{{# each navLinks}}
 							{{#if  isDropdown}}
-								<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">{{label}}<span class="caret"></span></a>
-									<ul class="dropdown-menu">
-										{{# each pages}}
-											
+								{{#ifeq language ../currentLanguage}}
+									<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">{{label}}<span class="caret"></span></a>
+										<ul class="dropdown-menu">
+											{{# each pages}}
 												<li {{#ifeq ../section key}}class="active"{{else}}{{/ifeq}}>
 													<a href="{{ href }}">{{ label }}</a>
 												</li>
-											
-										{{/each}}
-									</ul>
-								</li>
+											{{/each}}
+										</ul>
+									</li>
+								{{/ifeq}}
 							{{else}}
 
 
