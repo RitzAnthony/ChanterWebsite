@@ -22,23 +22,46 @@ exports.initLocals = function (req, res, next) {
 	var locals = res.locals;
 
 	var lang = keystone.get('language');
+	
+	if(req.session.currentLanguage == undefined){ //TODO Language should be added in session
+		req.session.currentLanguage = keystone.get('language').currentLanguage;
+	}
 
+	//redirection when the language is changed
 	if (req.query.language && req.query.language != lang.currentLanguage ) {
 		lang.currentLanguage = req.query.language;
-		var navigs = keystone.get('navigation');
+		
+		// First get navLinks from the navigation tree that are in a dropdown menu
+		var navLinks = keystone.get('navigation')
+			.filter((nav)=>{ return nav.isDropdown == false});
+		
+		// Then add the navLinks that are located in a  menu
+		keystone.get('navigation')
+			.filter((nav)=>{ return nav.isDropdown == true})
+			.forEach((dropdown) => {navLinks.push.apply(navLinks, dropdown.pages)});
+		
+		
 		var searchedUrl = req.originalUrl.split("?")[0];
-		var result = navigs.find((nav)=>{
-			return nav.href == searchedUrl}).foreignPageUrl;
+		var result = navLinks.find((nav)=>{
+			return nav.href == searchedUrl});
 		if(result == undefined){
 			result = '/';
+		}
+		else {
+			if (result.foreignPageUrl == undefined) {
+				result = '/';
+			}
+			else {
+				result = result.foreignPageUrl;
+			}
 		}
 		res.redirect(result);
 
 	}
-	else{
+	else{ // this else is executed when the language is not changed
 
 		//default static navs
-		var navLinks = [
+		var staticNavLinks = [
 			//TODO add foreignPageUrl attribute to this navlinks, otherwise language redirection will fail
 			{label: 'Gallery', key: 'gallery', href: '/gallery'},
 			{label: 'Events', key: 'events', href: '/events'},
@@ -48,17 +71,17 @@ exports.initLocals = function (req, res, next) {
 			{label: 'Newsletter', key: 'newsletter', href: '/newsletter'}
 		];
 
-		navLinks.push.apply(navLinks,keystone.get('navigation'));
+		staticNavLinks.push.apply(staticNavLinks,keystone.get('navigation'));
 
 		//move the index pages to to the top of the array, so the are displayed on the left
-		for (let i = 0; i < navLinks.length; i++) {
-			if (navLinks[i].href == '/') {
-				navLinks.splice(0, 0, navLinks.splice(i, 1)[0]);
+		for (let i = 0; i < staticNavLinks.length; i++) {
+			if (staticNavLinks[i].href == '/') {
+				staticNavLinks.splice(0, 0, staticNavLinks.splice(i, 1)[0]);
 			}
 		}
 
 
-		res.locals.navLinks = navLinks;
+		res.locals.navLinks = staticNavLinks;
 		res.locals.currentLanguage = keystone.get('language').currentLanguage;
 		res.locals.availableLanguages = keystone.get('availableLanguages');
 
