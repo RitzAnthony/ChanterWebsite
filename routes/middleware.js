@@ -10,6 +10,7 @@
  */
 var _ = require('lodash');
 var keystone = require('keystone');
+var Statistic = keystone.list('Statistic');
 
 /**
  Initialises the standard view locals
@@ -105,10 +106,38 @@ exports.initLocals = function (req, res, next) {
 			'Simplex',
 			'United',
 		];
+		
+		updateStatistic(req.originalUrl.split("?")[0]);
 
 		next();
 	}
 };
+ 
+function updateStatistic(url) {
+	
+	
+	Statistic.model
+		.find()
+		.where({date: new Date().toLocaleDateString(),
+				url: url})
+		.limit(1)
+		.exec( 
+		(err, statistic) => {
+			if (statistic.length == 0) {
+				var newStatistic = new Statistic.model({
+					url: url,
+					called: 1,
+				});
+				newStatistic.save();
+			}
+			else {
+				statistic[0].called++;
+				statistic[0].save();
+			}
+		}
+	);
+}
+
 
 /**
  Fetches and clears the flashMessages before a view is rendered
