@@ -123,7 +123,7 @@ keystone.set('routes', require('./routes'));
 
 // Configure the navigation bar in Keystone's Admin UI
 keystone.set('nav', {
-	pages: 'pages',
+	pages: ['pages', 'dropdowns'],
 	languages: 'languages',
 	posts: ['posts', 'post-categories'],
 	choirs: ['choirs', 'choir-types', 'choir-groups'],

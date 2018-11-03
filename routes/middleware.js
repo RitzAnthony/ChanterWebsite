@@ -114,8 +114,6 @@ exports.initLocals = function (req, res, next) {
 };
  
 function updateStatistic(url) {
-	
-	
 	Statistic.model
 		.find()
 		.where({date: new Date().toLocaleDateString(),
