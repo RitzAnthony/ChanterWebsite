@@ -2,45 +2,48 @@
 <script src="/js/lineChart/jquery-3.3.1.min.js"></script>
 <script src="/js/lineChart/mdb.min.js"></script>
 <script src="/js/lineChart/popper.min.js"></script>
-<div class="container">
 
-<canvas id="lineChart"></canvas>
+
+<div class="container" style="padding-left: 10%; padding-right: 10%">
+	{{#ifeq currentLanguage 'de'}}
+		<h1>Statistiken</h1>
+		<h3 style="color: black">Hier finden Sie Statistiken über alle Seitenaufrufe der letzten 30 Tage.</h3>
+	{{/ifeq}}
+	{{#ifeq currentLanguage 'fr'}}
+		<h1>Statistique</h1>
+		<h3 style="color: black">Vous trouverez ici des statistiques sur toutes les pages vues au cours des 30 derniers jours.</h3>
+
+	{{/ifeq}}
+
+
+	{{#each datasets}}
+	<canvas id="{{label}}" style="margin-top: 5%; margin-bottom: 10%"></canvas>
+{{/each}}
+
+	
 <script>
-	//line
-	var ctxL = document.getElementById("lineChart").getContext('2d');
-	console.log('HelloMen');
+	var labels ={{{labels}}};
+	var datasets ={{{datasetsStringify}}};
+
+	for (let i = 0; i < datasets.length; i++) {
+		
+	
+	var ctxL = document.getElementById(datasets[i].label).getContext('2d');
+	
 	var myLineChart = new Chart(ctxL, {
 		type: 'line',
 		data: {
-			labels: ["January", "February", "March", "April", "May", "June", "July"],
-			datasets: [{
-				label: "My First dataset",
-				data: [65, 59, 80, 81, 56, 55, 40],
-				backgroundColor: [
-					'rgba(105, 0, 132, .2)',
-				],
-				borderColor: [
-					'rgba(200, 99, 132, .7)',
-				],
-				borderWidth: 2
-			},
-				{
-					label: "My Second dataset",
-					data: [28, 48, 40, 19, 86, 27, 90],
-					backgroundColor: [
-						'rgba(0, 137, 132, .2)',
-					],
-					borderColor: [
-						'rgba(0, 10, 130, .7)',
-					],
-					borderWidth: 2
-				}
-			]
+			labels: labels,
+			datasets: [datasets[i]]
 		},
 		options: {
 			responsive: true
 		}
 	});
+	}
+	for (let i = 0; i < labels.length; i++) {
+		console.log(labels[i]);
+	}
 
 </script>
 
