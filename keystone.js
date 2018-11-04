@@ -58,7 +58,12 @@ keystone.init({
 	'auth': true,
 	'user model': 'User',
 });
+
+//tabs of the navigation bar
 keystone.set('navigation', []);
+
+//Used for redirection from one language to an other
+keystone.set('foreignReferences',[]);
 
 /*keystone.set('navigation', [{ TODO this can be removed, static navigation will be set in middleware
 	label: 'Home',
@@ -120,7 +125,7 @@ keystone.set('routes', require('./routes'));
 
 // Configure the navigation bar in Keystone's Admin UI
 keystone.set('nav', {
-	pages: 'pages',
+	pages: ['pages', 'dropdowns'],
 	languages: 'languages',
 	posts: ['posts', 'post-categories'],
 	choirs: ['choirs', 'choir-types', 'choir-groups'],

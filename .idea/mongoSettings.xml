@@ -4,10 +4,10 @@
     <option name="serverConfigurations">
       <list>
         <ServerConfiguration>
-          <option name="label" value="ChanteDB" />
+          <option name="label" value="ChanterDB" />
           <option name="serverUrls">
             <list>
-              <option value="localhost:27017" />
+              <option value="192.168.99.100:27017" />
             </list>
           </option>
           <option name="sshTunnelingConfiguration">
