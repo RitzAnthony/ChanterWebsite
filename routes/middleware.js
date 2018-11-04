@@ -63,13 +63,44 @@ exports.initLocals = function (req, res, next) {
 
 		//default static navs
 		var staticNavLinks = [
-			//TODO add foreignPageUrl attribute to this navlinks, otherwise language redirection will fail
-			{label: 'Gallery', key: 'gallery', href: '/gallery'},
-			{label: 'Events', key: 'events', href: '/events'},
-			{label: 'Choirs', key: 'choir', href: '/choirs'},
-			{label: 'Blog', key: 'blog', href: '/blog'},
-			{label: 'Contact', key: 'contact', href: '/contact'},
-			{label: 'Newsletter', key: 'newsletter', href: '/newsletter'}
+			//TODO add foreignPageUrl attribute to this navlinks, otherwise language redirection will 
+			//German static navigation tabs
+			{label: 'Gallerie', key: 'gallery', href: '/gallery', language: 'de',
+				foreignPageUrl:'/gallery',isDropdown:false},
+			
+			{label: 'Events', key: 'events', href: '/events', language: 'de',
+				foreignPageUrl:'/events',isDropdown:false},
+			
+			{label: 'Chöre', key: 'choir', href: '/choirs', language: 'de',
+				foreignPageUrl:'/choirs',isDropdown:false},
+			
+			{label: 'Blog', key: 'blog', href: '/blog', language: 'de',
+				foreignPageUrl:'/blog',isDropdown:false},
+			
+			{label: 'Kontakt', key: 'contact', href: '/contact', language: 'de',
+				foreignPageUrl:'/contact',isDropdown:false},
+			
+			{label: 'Newsletter', key: 'newsletter', href: '/newsletter', language: 'de',
+				foreignPageUrl:'/newsletter',isDropdown:false},
+
+			//French static navigation tabs //TODO translate french labels
+			{label: 'Gallery', key: 'gallery', href: '/gallery', language: 'fr',
+				foreignPageUrl:'/gallery',isDropdown:false},
+
+			{label: 'Events', key: 'events', href: '/events', language: 'fr',
+				foreignPageUrl:'/events',isDropdown:false},
+
+			{label: 'Choirs', key: 'choir', href: '/choirs', language: 'fr',
+				foreignPageUrl:'/choirs',isDropdown:false},
+
+			{label: 'Blog', key: 'blog', href: '/blog', language: 'fr',
+				foreignPageUrl:'/blog',isDropdown:false},
+
+			{label: 'Contact', key: 'contact', href: '/contact', language: 'fr',
+				foreignPageUrl:'/contact',isDropdown:false},
+
+			{label: 'Newsletter', key: 'newsletter', href: '/newsletter', language: 'fr',
+				foreignPageUrl:'/newsletter',isDropdown:false},
 		];
 
 		staticNavLinks.push.apply(staticNavLinks,keystone.get('navigation'));

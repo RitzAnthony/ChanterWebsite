@@ -19,3 +19,5 @@ ACCOUNTS
 
 .env
 .idea
+.idea/
+.idea/*

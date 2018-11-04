@@ -4,6 +4,7 @@ exports = module.exports = function (req, res) {
 
 	var view = new keystone.View(req, res);
 	var locals = res.locals;
+	var isIndexSearched = (req.originalUrl == '/')? true : false; 
 
 	// Set locals
 	//locals.section = 'pages';
@@ -41,7 +42,12 @@ exports = module.exports = function (req, res) {
 		q.exec(function (err, result) {
 			locals.data.page = result;
 			locals.section = (result != undefined) ? result.slug : '/';
-			next(err);
+			if(result == undefined && isIndexSearched) {
+				locals.section = 'error';
+				res.redirect('/error');
+			}else {
+				next(err);
+			}
 		});
 
 	});
