@@ -5,6 +5,7 @@ var __ = require('../helpers/index').__;
 
 Choir.add({
 	name: {type: String, required: true, initial: true, label: __('Name')},
+	language: {type: Types.Relationship, initial: true, ref: 'Language'},
 	npa: {type: String, label: __('NPA')},
 	place: {type: String, label: __('Place')},
 	

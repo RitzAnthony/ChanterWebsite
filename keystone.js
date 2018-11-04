@@ -6,6 +6,8 @@ require('dotenv').config();
 var keystone = require('keystone');
 var i18n = require('i18n');
 var handlebars = require('express-handlebars');
+var hbs = require('handlebars');
+require('./helpers/handlebars')(hbs);
 
 /*var express = require('express'), //TODO (Autor:Anthony) i think this can be removed
 	app = express(),
@@ -123,6 +125,7 @@ keystone.set('nav', {
 	posts: ['posts', 'post-categories'],
 	choirs: ['choirs', 'choir-types', 'choir-groups'],
 	users: ['users', 'user-groups'],
+	committee: ['committees', 'committee-members', 'committee-functions'],
 	events: 'events',
 	enquiries: 'enquiries',
 	newsletters: 'newsletters',
