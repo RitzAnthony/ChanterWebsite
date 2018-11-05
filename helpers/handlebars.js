@@ -32,6 +32,10 @@ function hbsHelpers(hbs) {
 	});
 
 
+	hbs.registerHelper("thumbnail_person", function(user, options) {
+		return user.picture.thumbnail(300, 300, {});
+	});
+
 
 	hbs.registerHelper("address", function(president, options) {
 		let html = '<address>';

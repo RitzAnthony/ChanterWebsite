@@ -1,0 +1,45 @@
+
+<div class="container">
+{{#each committee }}
+	<h2>{{ name }}</h2>
+
+	<div class="panel-group" id="accordion-{{ _id }}" role="tablist" aria-multiselectable="true">
+	{{#each members }}
+
+
+
+		<div class="panel panel-default">
+			<div class="panel-heading" role="tab" id="heading-{{ ../_id }}-{{ _id }}">
+				<h4 class="panel-title">
+					<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-{{ ../_id }}-{{ _id }}" aria-expanded="true" aria-controls="collapse-{{ ../_id }}-{{ _id }}">
+						{{ person.name.first }} {{ person.name.last }}, <strong>{{ function.name }}</strong>
+					</a>
+				</h4>
+			</div>
+			<div id="collapse-{{ ../_id }}-{{ _id }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-{{ ../_id }}-{{ _id }}">
+				<div class="panel-body">
+					<div class="media">
+						<div class="media-left">
+
+							<a href="#">
+							<img src="{{ person.picture.secure_url }}" class="img-thumbnail" style="min-width: 150px" />
+							</a>
+						</div>
+						<div class="media-body">
+							{{{ address person }}}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	{{/each}}
+	</div>
+
+
+
+		
+		
+		
+{{/each}}
+</div>
