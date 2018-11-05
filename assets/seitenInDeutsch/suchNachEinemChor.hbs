@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		table {
+			font-family: arial, sans-serif;
+			border-collapse: collapse;
+			width: 100%;
+		}
+		td, th {
+			text-align: left;
+			vertical-align:top;
+			padding: 8px;
+		}
+
+	</style>
+</head>
+<body>
+<section class="col-md-8" style="padding-left:5%">
+<h1>Suche nach einem Chor</h1>
+<form action="">
+	<table>
+		<tr>
+			<td><b>Wer ?</b></td>
+			<td><input type="radio" name="qui" value="tous" checked>Alle<br>
+				<input type="radio" name="qui" value="membresFederation">Mitglieder der Föderation<br>
+				<input type="radio" name="qui" value="nonMembresFederation">Nichtmitglieder der Föderation<br></td>
+		</tr>
+		<tr>
+			<td><b>Sprachregion ?</b></td>
+			<td><input type="radio" name="region" value="tous" checked>Alle<br>
+				<input type="radio" name="region" value="valaisRomand">Französischsprachiges Wallis<br>
+				<input type="radio" name="region" value="hautValais">Oberwallis<br>
+			</td>
+		</tr>
+		<tr>
+			<td><b>Gruppierung ?</b></td>
+			<td><input type="radio" name="groupement" value="tous" checked>Alle<br>
+				<input type="radio" name="groupement" value="GSCBV">GSCBV<br>
+				<input type="radio" name="groupement" value="UCC">UCC<br>
+				<input type="radio" name="groupement" value="GCVC">GCVC<br>
+				<input type="radio" name="groupement" value="OCV">OCV<br></td>
+		</tr>
+		<tr>
+			<td><b>Art des Chores ?</b></td>
+			<td><input type="radio" name="typeChoeur" value="female" checked>Alle<br>
+				<input type="radio" name="typeChoeur" value="adultes">Chöre für Erwachsene<br>
+				<input type="radio" name="typeChoeur" value="mixte">Gemischte Chöre<br>
+				<input type="radio" name="typeChoeur" value="hommes">Männerchöre<br>
+				<input type="radio" name="typeChoeur" value="dames">Damenchöre<br>
+				<input type="radio" name="typeChoeur" value="jeunes">Jugendchöre<br>
+				<input type="radio" name="typeChoeur" value="enfants">Kinderchöre<br></td>
+		</tr>
+		<tr>
+			<td><b>Chorpräsidentin ?</b></td>
+			<td><select id="mySelect">
+				<option disabled selected>Wählen Sie einen Chorpräsidenten aus</option>
+				<option>ASA-Valais</option>
+				<option>Allenbach Alexander</option>
+				<option>Alvarez Christian</option>
+				<option>Amacker Klaus</option>
+			</select></td>
+		</tr>
+		<tr>
+			<td><b>Chorleiter ?</b></td>
+			<td><select id="mySelect">
+				<option disabled selected>Wählen Sie einen Chorleiter aus</option>
+				<option>Abet Stéphane</option>
+				<option>Abbé-Savioz Sabine</option>
+				<option>Abgottspon Jörg</option>
+				<option>Abgottspon Raoul</option>
+			</select></td>
+		</tr>
+	</table>
+	<br/>
+	<input type="submit" value="Suche nach">
+	<input type="reset" value="Löschen">
+</form>
+
+</section>
+</body>
+</html>

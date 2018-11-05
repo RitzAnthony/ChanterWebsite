@@ -4,8 +4,9 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>ChanterProj</title>
+		<title>FSCV</title>
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<!--<link href="/styles/site.min.css" rel="stylesheet"> -->
 		<link href="/styles/{{theme}}.min.css" rel="stylesheet">
 		
@@ -20,11 +21,27 @@
 			<script src="//cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.js"></script>
 			<script src="//cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
-
+		
 	</head>
 	<body>
 		<div id="header">
 			<div class="container">
+				<div style="height: 30px;padding-top: 5px">
+					<div class="topBar" style="float:left">
+						{{# each availableLanguages}}
+							<li>
+								<a href='?language={{abbreviation}}'>{{abbreviation}}</a>
+							</li>
+						{{/each}}
+					</div>
+					<div class="topBar" style="float:right">
+						{{#if user}}
+							<li><a href="/keystone/signout">Sign Out</a></li>
+						{{else}}
+							<li><a href="/keystone/signin">Sign In</a></li>
+						{{/if}}
+					</div>
+				</div>
 				<div role="navigation" class="navbar navbar-default">
 					<div class="container-fluid">
 						<div class="navbar-header">
@@ -32,22 +49,22 @@
 								<span class="sr-only">Toggle navigation</span>
 								<span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
 							</button>
-							<a href="/" class="navbar-brand" style="padding: 4px"><img height="100%" src="favicon.ico"></a>
+							<a href="/" class="navbar-brand" style="">FSCV</a>
 						</div>
 						<div class="collapse navbar-collapse">
 							<ul class="nav navbar-nav navbar-left">
 									{{# each navLinks}}
-										{{#ifeq  language undefined}}
-											<li id='test' {{#ifeq ../section key}}class="active"{{else}}{{/ifeq}}>
-												<a href="{{ href }}">{{ label }}</a>
-											</li>
-										{{/ifeq}}
-										{{#ifeq language ../currentLanguage}}
-												<li {{#ifeq ../section key}}class="active"{{else}}{{/ifeq}}>
-													<a href="{{ href }}">{{ label }}</a>
-												</li>
-										{{/ifeq}}
-								{{/each}}
+								{{#ifeq  language undefined}}
+									<li id='test' {{#ifeq ../section key}}class="active"{{else}}{{/ifeq}}>
+										<a href="{{ href }}">{{ label }}</a>
+									</li>
+								{{/ifeq}}
+								{{#ifeq language ../currentLanguage}}
+									<li {{#ifeq ../section key}}class="active"{{else}}{{/ifeq}}>
+										<a href="{{ href }}">{{ label }}</a>
+									</li>
+								{{/ifeq}}
+							{{/each}}
 							</ul>
 							<ul class="nav navbar-nav navbar-right">
 								{{#if user.isAdmin}}
@@ -67,22 +84,13 @@
 									</ul>
 								</li>
 								{{/if}}
-								{{# each availableLanguages}}
-									<li>
-										<a href='?language={{abbreviation}}'>{{abbreviation}}</a>
-									</li>
-								{{/each}}
-								{{#if user}}
-								<li><a href="/keystone/signout">Sign Out</a></li>
-								{{else}}
-								<li><a href="/keystone/signin">Sign In</a></li>
-								{{/if}}
 							</ul>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		<img style="display:block;margin-left: auto;margin-right: auto" src="images/pageDeGarde.jpg" width="90%"/>
 		<div id="body">
 			<!--
 				Flash messages allow you to display once-off status messages to users, e.g. form
@@ -117,7 +125,14 @@
 		</div>
 		<div class="container">
 			<div id="footer">
-				<p>Powered by <a href="http://keystonejs.com" target="_blank">KeystoneJS</a>.</p>
+				<hr>
+				<table align="center">
+					<tr>
+						<td><a href="https://www.facebook.com/FedSocChantValais/?ref=bookmarks"><i class="fa fa-facebook-square" style="font-size:24px;color:#3B5998"></i></a></td>
+						<td><a href="https://www.youtube.com/channel/UCdAO5fYe4WS7KfvHvZZdNpg"><i class="fa fa-youtube-square" style="font-size:24px;color:#bb0000"></i></a></td>
+					</tr>
+				</table>
+				<p align="center">© 2016 Fédération des Sociétés de Chant du Valais</p>
 			</div>
 		</div>
 		{{!--
