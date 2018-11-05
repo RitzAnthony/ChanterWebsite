@@ -32,19 +32,28 @@ exports = module.exports = function (req, res) {
 
 	if(typeof choirType !== 'undefined' && choirType !== 'all')
 		choirQuery = choirQuery.where('type',  { "$in" : [choirType]});
+
+	if(typeof choirPresident !== 'undefined' && choirPresident !== 'all')
+		choirQuery = choirQuery.where('president',  choirPresident);
+
+	if(typeof choirDirector !== 'undefined' && choirDirector !== 'all')
+		choirQuery = choirQuery.where('director', choirDirector);
+
+
 	
 	view.query('choirs', choirQuery
 		.populate('type')
 		.populate('group')
 		.sort('sortOrder')
 	);
-
-
+	
+	view.query('userGroupP', keystone.list('UserGroup').model.find().where('slug', 'P'));
+	view.query('userGroupD', keystone.list('UserGroup').model.find().where('slug', 'D'));
+	
 	view.query('langs', keystone.list('Language').model.find());
 	view.query('choirGroups', keystone.list('ChoirGroup').model.find());
 	view.query('choirTypes', keystone.list('ChoirType').model.find());
-	view.query('userPresident', keystone.list('User').model.find().populate('group').where('group.slug', {"$in" : 'P'}));
-	view.query('userChef', keystone.list('User').model.find().populate('group').where('group.slug',  {"$in" : 'D'}));
+	view.query('users', keystone.list('User').model.find());
 
 	// Render the view
 	view.render('choir', {

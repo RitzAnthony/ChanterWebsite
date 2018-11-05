@@ -16,11 +16,13 @@ exports = module.exports = function (req, res) {
 	);
 
 
+	view.query('userGroupP', keystone.list('UserGroup').model.find().where('slug', 'P'));
+	view.query('userGroupD', keystone.list('UserGroup').model.find().where('slug', 'D'));
+
 	view.query('langs', keystone.list('Language').model.find());
 	view.query('choirGroups', keystone.list('ChoirGroup').model.find());
 	view.query('choirTypes', keystone.list('ChoirType').model.find());
-	view.query('userPresident', keystone.list('User').model.find().populate('group').where('group', {$elemMatch : {slug: 'P'}}));
-	view.query('userChef', keystone.list('User').model.find().populate('group').where('group',  {"$in" : 'D'}));
+	view.query('users', keystone.list('User').model.find());
 
 	// Render the view
 	view.render('choir');

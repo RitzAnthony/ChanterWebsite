@@ -6,6 +6,16 @@ function hbsHelpers(hbs) {
 	hbs.registerHelper("__", function(value, options) {
 		return __(value);
 	});
+
+
+	hbs.registerHelper("in_group", function(groupId, userGroups, options) {
+
+		if(userGroups.indexOf(groupId) !== -1){
+			return options.fn(this);
+		}  
+		
+		return options.inverse(this);
+	});
 	
 	hbs.registerHelper("selected", function(value, resLocals){
 		if(typeof resLocals === 'undefined')
