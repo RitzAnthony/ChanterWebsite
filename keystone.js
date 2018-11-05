@@ -6,8 +6,10 @@ require('dotenv').config();
 var keystone = require('keystone');
 var i18n = require('i18n');
 var handlebars = require('express-handlebars');
+var hbs = require('handlebars');
+require('./helpers/handlebars')(hbs);
 
-/*var express = require('express'),
+/*var express = require('express'), //TODO (Autor:Anthony) i think this can be removed
 	app = express(),
 	cookieParser = require('cookie-parser'),
 	cookieLanguage = 'myLanguage';
@@ -50,15 +52,18 @@ keystone.init({
 
 	'auto update': true,
 	//'mongo': 'mongodb://mongo:27017',
-	//'mongo': 'mongodb://mongo:27017',
-	'mongo': 'mongodb://192.168.99.100:27017',
+	'mongo': 'mongodb://localhost:27017',
 	//'mongo': 'mongodb://hans:Qwertzuiop123@cluster0-shard-00-00-db0ox.mongodb.net:27017,cluster0-shard-00-01-db0ox.mongodb.net:27017,cluster0-shard-00-02-db0ox.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true',
 	'session': true,
 	'auth': true,
 	'user model': 'User',
 });
 
+//tabs of the navigation bar
 keystone.set('navigation', []);
+
+//Used for redirection from one language to an other
+keystone.set('foreignReferences',[]);
 
 /*keystone.set('navigation', [{ TODO this can be removed, static navigation will be set in middleware
 	label: 'Home',
@@ -100,7 +105,7 @@ function getLanguages() {
 		keystone.set('availableLanguages', languages);
 		keystone.set('language', {'currentLanguage': languages[0].abbreviation});
 	});
-
+	
 }
 
 
@@ -120,11 +125,12 @@ keystone.set('routes', require('./routes'));
 
 // Configure the navigation bar in Keystone's Admin UI
 keystone.set('nav', {
-	pages: 'pages',
+	pages: ['pages', 'dropdowns'],
 	languages: 'languages',
 	posts: ['posts', 'post-categories'],
 	choirs: ['choirs', 'choir-types', 'choir-groups'],
 	users: ['users', 'user-groups'],
+	committee: ['committees', 'committee-members', 'committee-functions'],
 	events: 'events',
 	enquiries: 'enquiries',
 	newsletters: 'newsletters',

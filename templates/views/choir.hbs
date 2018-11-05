@@ -1,22 +1,111 @@
 <div class="container">
+	<form class="form-horizontal" action="/choirs/search" method="get">
+		<div class="form-group">
+			<label for="member_fc" class="control-label col-sm-3">{{ __ 'Qui ?' }}</label>
+			<div class="col-sm-5">
+				<select name="member_fc" id="member_fc" class="form-control">
+					<option disabled selected>{{ __ 'Sélectionner des membres' }}</option>
+					<option value="-1" {{ selected "-1" form.isFcMember }}>{{ __ 'Tous' }}</option>
+					<option value="1" {{ selected "1" form.isFcMember }}>{{ __ 'Membres de la Fédération' }}</option>
+					<option value="0" {{ selected "0" form.isFcMember }}>{{ __ 'Non-membres de la Fédération' }}</option>
+				</select>
+			</div>
+		</div>
+
+
+		<div class="form-group">
+			<label for="lang" class="control-label col-sm-3">{{ __ 'Région linguistique ?' }}</label>
+			<div class="col-sm-5">
+				<select name="lang" id="lang" class="form-control">
+					<option disabled selected>{{ __ 'Sélectionner une région linguistique' }}</option>
+					<option value="all" {{ selected "all" form.lang }}>{{ __ 'Tous' }}</option>
+					{{#each langs}}
+						<option value="{{ _id }}" {{ selected _id ../form.lang }}>{{ title }}</option>
+					{{/each}}
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="choir_group" class="control-label col-sm-3">{{ __ 'Groupement ?' }}</label>
+			<div class="col-sm-5">
+				<select name="choir_group" id="choir_group" class="form-control">
+					<option disabled selected>{{ __ 'Sélectionner un groupement' }}</option>
+					<option value="all" {{ selected "all" form.choirGroup }}>{{ __ 'Tous' }}</option>
+					{{#each choirGroups}}
+						<option value="{{ _id }}" {{ selected _id ../form.choirGroup }}>{{ slug }} - {{ name }}</option>
+					{{/each}}
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="choir_type" class="control-label col-sm-3">{{ __ 'Type de choeurs ?' }}</label>
+			<div class="col-sm-5">
+				<select name="choir_type" id="choir_type" class="form-control">
+					<option disabled selected>{{ __ 'Sélectionner un type de choeurs' }}</option>
+					<option value="all" {{ selected "all" form.choirType }}>{{ __ 'Tous' }}</option>
+					{{#each choirTypes }}
+						<option value="{{ _id }}" {{ selected _id ../form.choirType }}>{{ slug }} - {{ name }}</option>
+					{{/each}}
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="choir_president" class="control-label col-sm-3">{{ __ 'Président de choeur ?' }}</label>
+			<div class="col-sm-5">
+				<select name="choir_president" id="choir_president" class="form-control">
+					<option disabled selected>{{ __ 'Sélectionner un Président de choeur' }}</option>
+					<option value="all"{{ selected "all" form.choirPresident }}>{{ __ 'Tous' }}</option>
+					{{#each userPresident }}
+						<option value="{{ _id }}" {{ selected _id form.choirPresident }}>{{ name.first }} {{ name.last }}</option>
+					{{/each}}
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="choir_director" class="control-label col-sm-3">{{ __ 'Chef de choeur ?' }}</label>
+			<div class="col-sm-5">
+				<select name="choir_director" id="choir_director" class="form-control">
+					<option disabled selected>{{ __ 'Sélectionner un Chef de choeur' }}</option>
+					<option value="all" {{ selected "all" form.choirDirector }}>{{ __ 'Tous' }}</option>
+					{{#each userDirector }}
+						<option value="{{ _id }}" {{ selected _id form.choirDirector }}>{{ name.first }} {{ name.last }}</option>
+					{{/each}}
+				</select>
+			</div>
+		</div>
+
+
+
+		<div class="form-group">
+			<div class="col-sm-offset-3 col-sm-5">
+				<input type="submit" class="btn btn-primary" value="{{ __ 'Rechercher' }}">
+				<input type="reset" class="btn btn-default" value="{{ __ 'Effacer' }}">
+			</div>
+		</div>
+		
+	</form>
+	
+	
 	{{#if choirs}}
 		{{#each choirs}}
-			<h2>{{name}}
-				<div class="pull-right text-muted">19th May 2014</div>
-			</h2>
-			<div class="row gallery-images">
-				<div class="col-sm-8 col-md-8">
-					<div class="row">
-						<div class="col-xs-4 col-sm-4 col-md-3 gallery-image">
-							<h1>Hallo</h1>
-						</div>
 
-					</div>
+
+			<div class="media">
+				<div class="media-body">
+					<h2 class="media-heading">{{name}}</h2>
+					{{ npa }} - {{ place }}<br />
+					<strong>{{ type.name }}</strong>
 				</div>
+				<hr/>
 			</div>
+			
 		{{/each}}
 	{{else}}
 		<!-- else -->
-		<h3 class="text-muted">There are no events galleries yet.</h3>
+		<h3 class="text-muted">No choirs founds.</h3>
 	{{/if}}
 </div>

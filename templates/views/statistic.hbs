@@ -1,0 +1,50 @@
+<link href="/styles/mdb.min.css" rel="stylesheet" />
+<script src="/js/lineChart/jquery-3.3.1.min.js"></script>
+<script src="/js/lineChart/mdb.min.js"></script>
+<script src="/js/lineChart/popper.min.js"></script>
+
+
+<div class="container" style="padding-left: 10%; padding-right: 10%">
+	{{#ifeq currentLanguage 'de'}}
+		<h1>Statistiken</h1>
+		<h3 style="color: black">Hier finden Sie Statistiken über alle Seitenaufrufe der letzten 30 Tage.</h3>
+	{{/ifeq}}
+	{{#ifeq currentLanguage 'fr'}}
+		<h1>Statistique</h1>
+		<h3 style="color: black">Vous trouverez ici des statistiques sur toutes les pages vues au cours des 30 derniers jours.</h3>
+
+	{{/ifeq}}
+
+
+	{{#each datasets}}
+	<canvas id="{{label}}" style="margin-top: 5%; margin-bottom: 10%"></canvas>
+{{/each}}
+
+	
+<script>
+	var labels ={{{labels}}};
+	var datasets ={{{datasetsStringify}}};
+
+	for (let i = 0; i < datasets.length; i++) {
+		
+	
+	var ctxL = document.getElementById(datasets[i].label).getContext('2d');
+	
+	var myLineChart = new Chart(ctxL, {
+		type: 'line',
+		data: {
+			labels: labels,
+			datasets: [datasets[i]]
+		},
+		options: {
+			responsive: true
+		}
+	});
+	}
+	for (let i = 0; i < labels.length; i++) {
+		console.log(labels[i]);
+	}
+
+</script>
+
+</div>

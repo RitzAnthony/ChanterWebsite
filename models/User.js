@@ -19,6 +19,7 @@ User.add({
 	
 	title: {type: Types.Select, options: 'Mr., M.', default: 'Mr.'},
 	name: {type: Types.Name, required: true, index: true},
+	picture: { type: Types.CloudinaryImage },
 	function: {type: String},
 	address1: {type: String},
 	address2: {type: String},
