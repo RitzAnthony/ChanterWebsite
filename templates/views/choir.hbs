@@ -93,10 +93,12 @@
 		
 	</form>
 	
+	<hr />
 	
 	{{#if choirs}}
 		
 		<p class="text-muted">{{ choirs.length }} {{ __ 'choeurs trouvés' }}</p>
+	<br /><br />
 		
 		{{#each choirs}}
 
@@ -116,7 +118,7 @@
 				</div>
 				<div class="col-sm-3">
 					<p>{{ npa }} {{ place }}</p>
-					<p>{{ __ 'Fondée en' }} {{ foudation_year }}</p>
+					<p>{{ __ 'Fondé en' }} {{ foudation_year }}</p>
 				</div>
 				<div class="col-sm-3">
 					<p>
