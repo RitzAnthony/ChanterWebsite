@@ -95,17 +95,46 @@
 	
 	
 	{{#if choirs}}
+		
+		<p class="text-muted">{{ choirs.length }} {{ __ 'choeurs trouvés' }}</p>
+		
 		{{#each choirs}}
 
 
-			<div class="media">
-				<div class="media-body">
+			<div class="row">
+				<div class="col-sm-12">
 					<h2 class="media-heading">{{name}}</h2>
-					{{ npa }} - {{ place }}<br />
-					<strong>{{ type.name }}</strong>
 				</div>
-				<hr/>
+				<div class="col-sm-3">
+					<p><strong>{{ type.name }}</strong></p>
+					<p>
+						{{#each group }}
+							{{ __ 'Membre' }} <strong>{{ slug }}</strong><br />
+						{{/each}}
+					</p>
+					<p>{{ __ 'Mise à jour' }} : {{ format_date updated_at }}</p>
+				</div>
+				<div class="col-sm-3">
+					<p>{{ npa }} {{ place }}</p>
+					<p>{{ __ 'Fondée en' }} {{ foudation_year }}</p>
+				</div>
+				<div class="col-sm-3">
+					<p>
+						<strong>{{ __ 'Président' }}</strong>
+						<br />{{ president.name.first }} {{ president.name.last }}
+					</p>
+					{{{ address president }}}
+				</div>
+				<div class="col-sm-3">
+					<p>
+						<strong>{{ __ 'Directeur' }}</strong>
+						<br />{{ director.name.first }} {{ director.name.last }}
+					</p>
+					{{{ address director }}}
+				</div>
+				
 			</div>
+			<hr/>
 			
 		{{/each}}
 	{{else}}

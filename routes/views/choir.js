@@ -12,6 +12,8 @@ exports = module.exports = function (req, res) {
 	view.query('choirs', keystone.list('Choir').model.find()
 		.populate('type')
 		.populate('group')
+		.populate('president')
+		.populate('director')
 		.sort('sortOrder')
 	);
 

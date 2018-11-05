@@ -3,23 +3,23 @@ exports.create = {
 	ChoirType: [
 		{
 			'slug': 'CX',
-			'name': 'choeur mixte',
+			'name': 'Choeur mixte',
 		},
 		{
 			'slug': 'CH',
-			'name': 'choeur d\'hommes',
+			'name': 'Choeur d\'hommes',
 		},
 		{
 			'slug': 'CD',
-			'name': 'choeur de dames',
+			'name': 'Choeur de dames',
 		},
 		{
 			'slug': 'CJ',
-			'name': 'choeur de Jeunes',
+			'name': 'Choeur de Jeunes',
 		},
 		{
 			'slug': 'CE',
-			'name': 'choeur d\'enfants',
+			'name': 'Choeur d\'enfants',
 		},
 	],
 };
