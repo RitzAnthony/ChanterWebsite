@@ -29,7 +29,7 @@ Choir.add({
 	is_fc_member: {type: Types.Boolean, label: __('Is member of the federation')},
 	date_fc_entry: {type: Types.Date, label: __('Federation entry date')},
 	
-	group: {type: Types.Relationship, ref: 'ChoirGroup', index: true, label: __('Group')},
+	group: {type: Types.Relationship, ref: 'ChoirGroup', index: true, many: true, label: __('Group')},
 	date_group_entry: {type: Types.Date, label: __('Group entry date')},
 	
 	is_usc_member: {type: Types.Boolean, label: __('Is member of the USC')},
@@ -54,13 +54,11 @@ Choir.add({
 	
 	ag2016: {type: Types.Number, label: __('AG 2016')},
 	
-	updated_at: {type: Types.Date, hidden: true},
+	updated_at: {type: Date, hidden: true},
 });
 
 Choir.schema.pre('save', function(next) {
-	if (this.isModified('state')) {
-		this.updated_at = new Date();
-	}
+	this.updated_at = new Date();
 	next();
 });
 

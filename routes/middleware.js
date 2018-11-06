@@ -97,7 +97,7 @@ exports.initLocals = function (req, res, next) {
 			{label: 'Coeurs', key: 'choir', href: '/choirs', language: 'fr',
 				foreignPageUrl:'/choirs',isDropdown:false},
 			
-			{label: 'Comité', key: 'committee', href: '/committees', language: 'de',
+			{label: 'Comité', key: 'committee', href: '/committees', language: 'fr',
 				foreignPageUrl:'/committees',isDropdown:false},
 
 			{label: 'Blog', key: 'blog', href: '/blog', language: 'fr',

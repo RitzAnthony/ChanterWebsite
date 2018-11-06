@@ -58,8 +58,10 @@
 				<select name="choir_president" id="choir_president" class="form-control">
 					<option disabled selected>{{ __ 'Sélectionner un Président de choeur' }}</option>
 					<option value="all"{{ selected "all" form.choirPresident }}>{{ __ 'Tous' }}</option>
-					{{#each userPresident }}
-						<option value="{{ _id }}" {{ selected _id form.choirPresident }}>{{ name.first }} {{ name.last }}</option>
+					{{#each users }}
+						{{#in_group ../userGroupP.0._id this.group }}
+							<option value="{{ _id }}" {{ selected _id ../form.choirPresident }}>{{ name.first }} {{ name.last }}</option>
+						{{/in_group}}
 					{{/each}}
 				</select>
 			</div>
@@ -71,8 +73,10 @@
 				<select name="choir_director" id="choir_director" class="form-control">
 					<option disabled selected>{{ __ 'Sélectionner un Chef de choeur' }}</option>
 					<option value="all" {{ selected "all" form.choirDirector }}>{{ __ 'Tous' }}</option>
-					{{#each userDirector }}
-						<option value="{{ _id }}" {{ selected _id form.choirDirector }}>{{ name.first }} {{ name.last }}</option>
+					{{#each users }}
+						{{#in_group ../userGroupD.0._id this.group }}
+							<option value="{{ _id }}" {{ selected _id ../form.choirDirector }}>{{ name.first }} {{ name.last }}</option>
+						{{/in_group}}
 					{{/each}}
 				</select>
 			</div>
@@ -89,19 +93,50 @@
 		
 	</form>
 	
+	<hr />
 	
 	{{#if choirs}}
+		
+		<p class="text-muted">{{ choirs.length }} {{ __ 'choeurs trouvés' }}</p>
+	<br /><br />
+		
 		{{#each choirs}}
 
 
-			<div class="media">
-				<div class="media-body">
+			<div class="row">
+				<div class="col-sm-12">
 					<h2 class="media-heading">{{name}}</h2>
-					{{ npa }} - {{ place }}<br />
-					<strong>{{ type.name }}</strong>
 				</div>
-				<hr/>
+				<div class="col-sm-3">
+					<p><strong>{{ type.name }}</strong></p>
+					<p>
+						{{#each group }}
+							{{ __ 'Membre' }} <strong>{{ slug }}</strong><br />
+						{{/each}}
+					</p>
+					<p>{{ __ 'Mise à jour' }} : {{ format_date updated_at }}</p>
+				</div>
+				<div class="col-sm-3">
+					<p>{{ npa }} {{ place }}</p>
+					<p>{{ __ 'Fondé en' }} {{ foudation_year }}</p>
+				</div>
+				<div class="col-sm-3">
+					<p>
+						<strong>{{ __ 'Président' }}</strong>
+						<br />{{ president.name.first }} {{ president.name.last }}
+					</p>
+					{{{ address president }}}
+				</div>
+				<div class="col-sm-3">
+					<p>
+						<strong>{{ __ 'Directeur' }}</strong>
+						<br />{{ director.name.first }} {{ director.name.last }}
+					</p>
+					{{{ address director }}}
+				</div>
+				
 			</div>
+			<hr/>
 			
 		{{/each}}
 	{{else}}
