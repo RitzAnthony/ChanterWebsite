@@ -2,6 +2,9 @@ var keystone = require('keystone');
 
 exports = module.exports = function (req, res) {
 
+	console.log(keystone.get('language').currentLanguage);
+	req.setLocale(keystone.get('language').currentLanguage);
+
 	var view = new keystone.View(req, res);
 	var locals = res.locals;
 

@@ -1,7 +1,7 @@
 var keystone = require('keystone');
 var Types = keystone.Field.Types;
 var ChoirGroup = new keystone.List('ChoirGroup');
-var __ = require('../helpers/index').__;
+var __ = function(key){return key};
 
 ChoirGroup.add({
 	slug: {type: String, readonly: true, label: __('Abbrevation')},

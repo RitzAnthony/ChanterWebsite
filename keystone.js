@@ -22,13 +22,7 @@ keystone.app = app; */
 // and documentation.
 
 
-i18n.configure({
-	locales:['fr', 'de'],
-	cookie: 'locale',
-	defaultLocale: 'fr',
-	directory: __dirname + '/locales',
-	queryParameter: 'lang',
-});
+
 
 keystone.init({
 	'name': 'www.chanter.ch',
@@ -59,37 +53,16 @@ keystone.init({
 	'user model': 'User',
 });
 
+
+
+
+
 //tabs of the navigation bar
 keystone.set('navigation', []);
 
 //Used for redirection from one language to an other
 keystone.set('foreignReferences',[]);
 
-/*keystone.set('navigation', [{ TODO this can be removed, static navigation will be set in middleware
-	label: 'Home',
-	key: 'home',
-	href: '/'
-},  {
-	label: 'Gallery',
-	key: 'gallery',
-	href: '/gallery'
-},  {
-	label: 'Events',
-	key: 'events',
-	href: '/events'
-},  {
-	label: 'Blog',
-	key: 'blog',
-	href: '/blog'
-}, {
-	label: 'Choir',
-	key: 'choir',
-	href: '/choir'
-},{
-	label: 'Contact',
-	key: 'contact',
-	href: '/contact'
-}]); */
 
 // Set the default theme
 keystone.set('theme', 'Cerulean');
@@ -124,6 +97,15 @@ keystone.set('locals', {
 	utils: keystone.utils,
 	editable: keystone.content.editable,
 });
+
+
+i18n.configure({
+	locales:['fr', 'de', 'en'],
+	defaultLocale: 'fr',
+	directory: __dirname + '/locales',
+	register: global
+});
+
 
 keystone.set('signin logo', '../images/FSCV_logo.png');
 

@@ -1,6 +1,6 @@
 var keystone = require('keystone');
 var Types = keystone.Field.Types;
-var __ = require('../helpers/index').__;
+var __ = function(key){return key};
 
 /**
  * User Model

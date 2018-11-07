@@ -73,8 +73,9 @@ function updateNavigation() {
 							if (currentDropdown != undefined){
 								var relatedDropdown = navLink.find(function (element)
 								{return (element.label == currentDropdown.name)});
-
-								relatedDropdown.pages.push(navPoint);
+								
+								if(typeof relatedDropdown !== 'undefined')
+									relatedDropdown.pages.push(navPoint);
 							}
 							else {
 								navLink.push(navPoint);

@@ -11,7 +11,8 @@ var Dropdown = new keystone.List('Dropdown');
 
 Dropdown.add({
 	name: {type: String, required: true, index: true},
-	language: {type: Types.Relationship, ref: 'Language'}});
+	language: {type: Types.Relationship, ref: 'Language'}
+});
 
 
 

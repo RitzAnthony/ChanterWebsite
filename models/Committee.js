@@ -1,7 +1,7 @@
 var keystone = require('keystone');
 var Types = keystone.Field.Types;
 var Committee = new keystone.List('Committee');
-var __ = require('../helpers/index').__;
+var __ = function(key){return key};
 
 Committee.add({
 	name: {type: String, required: true, initial: true, label: __('Name')},

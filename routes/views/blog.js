@@ -3,6 +3,8 @@ var async = require('async');
 
 exports = module.exports = function (req, res) {
 
+	req.setLocale(keystone.get('language').currentLanguage);
+	
 	var view = new keystone.View(req, res);
 	var locals = res.locals;
 

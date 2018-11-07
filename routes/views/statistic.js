@@ -2,6 +2,9 @@ var keystone = require('keystone');
 var Statistic = keystone.list('Statistic');
 
 exports = module.exports = async function (req, res) {
+	
+	req.setLocale(keystone.get('language').currentLanguage);
+
 	var view = new keystone.View(req, res);
 	var colors = ['rgba(60, 186, 84', 'rgba(244, 194, 13', 'rgba(219, 50, 54','rgba(72, 133, 237'];
 	var locals = res.locals;
