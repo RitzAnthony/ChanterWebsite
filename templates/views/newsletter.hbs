@@ -1,5 +1,5 @@
 <div class="container">
-	<h1>Subscribe to our Newsletter</h1>
+	<h1>{{ __ 'Subscribe to our Newsletter'}}</h1>
 </div>
 <div class="container">
 	<div class="row">
@@ -10,7 +10,7 @@
 				<form method="post">
 					<input type="hidden" name="action" value="newsletter">
 					<div class="form-group {{#if validationErrors.name}}has-error{{/if}}">
-						<label>Name</label>
+						<label>{{ __ 'Name'}}</label>
 						<input type="text" name="name.full" class="form-control" value="{{formData.[name.full]}}">
 					</div>
 					<div class="form-group {{#if validationErrors.email}}has-error{{/if}}">
@@ -29,7 +29,7 @@
 					</div>
 					
 					<div class="form-actions">
-						<button type="submit" class="btn btn-primary">Send</button>
+						<button type="submit" class="btn btn-primary">{{ __ 'Send'}}</button>
 					</div>
 				</form>
 			{{/if}}
