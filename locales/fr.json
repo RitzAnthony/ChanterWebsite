@@ -25,7 +25,7 @@
 	"USC Password": "USC Password",
 	"AG 2016": "AG 2016",
 	"Abbrevation": "Abbrevation",
-	"Name": "Name",
+	"Name": "Nom",
 	"Members": "Members",
 	"User": "User",
 	"Function": "Function",
@@ -55,5 +55,20 @@
 	"Fondée en": "Fondée en",
 	"Mise à jour": "Mise à jour",
 	"choeurs trouvés": "choeurs trouvés",
-	"Fondé en": "Fondé en"
+	"Fondé en": "Fondé en",
+  
+  
+	"Just leaving a message": "Je laisse juste un message",
+	"I've got a question": "J'ai une question",
+	"Something else...": "Autre chose....",
+	"select one": "Choisissez-en un",
+	"Contact Us": "Contactez-nous",
+	"Phone": "Téléphone",
+	"What are you contacting us about?": "Qu'est-ce qui vous amène à nous contacter ?",
+	"Message": "Message",
+	"Leave us a message": "Laissez-nous un message",
+	"Send": "Envoyer",
+	"Sign in": "S'inscrire",
+	"Sign out": "Déconnexion",
+	"Statistic": "Statistiques"
 }
