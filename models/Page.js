@@ -82,7 +82,7 @@ function updateNavigation() {
 						}
 					);
 				});
-			}) ;
+			});
 		});
 	});
 }

@@ -101,10 +101,16 @@ keystone.import('models');
 
 getLanguages();
 function getLanguages() {
-	keystone.list('Language').model.find().exec((err, languages) =>{
+	var languages = [{'title':'Deutsch', 'abbreviation':'de'},
+		{'title':'Francais', 'abbreviation':'fr'}];
+
+	keystone.set('availableLanguages', languages);
+	keystone.set('language', {'currentLanguage': languages[0].abbreviation});
+	/*keystone.list('Language').model.find().exec((err, languages) =>{
+		
 		keystone.set('availableLanguages', languages);
 		keystone.set('language', {'currentLanguage': languages[0].abbreviation});
-	});
+	});*/
 	
 }
 

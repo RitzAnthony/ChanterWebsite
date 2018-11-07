@@ -25,5 +25,20 @@
   "USC Password": "USC Password",
   "AG 2016": "AG 2016",
   "Abbrevation": "Abbrevation",
-  "Name": "Name"
+  "Name": "Name",
+  
+  
+  "Just leaving a message": "Just leaving a message",
+  "I've got a question": "I've got a question",
+  "Something else...": "Something else...",
+  "select one": "select one",
+  "Contact Us": "Contact Us",
+  "Phone": "Phone",
+  "What are you contacting us about?": "What are you contacting us about?",
+  "Message": "Message",
+  "Leave us a message": "Leave us a message",
+  "Send": "Send",
+  "Sign in": "Sign in",
+  "Sign out": "Sign out",
+  "Statistic": "Statistic"
 }
