@@ -38,30 +38,31 @@ function hbsHelpers(hbs) {
 
 
 	hbs.registerHelper("address", function(president, options) {
+		
 		let html = '<address>';
 	
-		if(president.address1.length > 0)
+		if(president.address1 && president.address1.length > 0)
 			html += president.address1 + '<br />';
 		
-		if(president.address2.length > 0)
+		if(president.address2 && president.address2.length > 0)
 			html += president.address2 + '<br />';
 		
-		if(president.npa.length > 0 && president.locality.length > 0)
+		if(president.npa && president.npa.length > 0 && president.locality.length > 0)
 			html += president.npa + ' ' + president.locality + '<br />';
 		
-		if(president.email.length > 0)
+		if(president.email && president.email.length > 0)
 			html += '<a href="mailto:'+president.email+'">'+president.email + '</a><br />';
 		
-		if(president.phone.length > 0)
+		if(president.phone && president.phone.length > 0)
 			html += president.phone + '<br />';
 		
-		if(president.phone_pro.length > 0)
+		if(president.phone_pro && president.phone_pro.length > 0)
 			html += president.phone_pro + '<br />';
 		
-		if(president.fax.length > 0)
+		if(president.fax && president.fax.length > 0)
 			html += president.fax + '<br />';
 		
-		if(president.phone_mobile.length > 0)
+		if(president.phone_mobile && president.phone_mobile.length > 0)
 			html += president.phone_mobile + '<br />';
 		
 		html += '</address>';

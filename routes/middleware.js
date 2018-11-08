@@ -24,7 +24,7 @@ exports.initLocals = function (req, res, next) {
 
 	var lang = keystone.get('language');
 	
-	if(req.session.currentLanguage == undefined){ //TODO Language should be added in session
+	if(req.session.currentLanguage == undefined){ 
 		req.session.currentLanguage = keystone.get('language').currentLanguage;
 	}
 
