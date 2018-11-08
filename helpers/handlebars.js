@@ -30,6 +30,16 @@ function hbsHelpers(hbs) {
 	hbs.registerHelper("format_date", function(value, options) {
 		return value.toDateString();
 	});
+	
+	hbs.registerHelper("format_datetime", function(value, options) {
+		
+		if(value){
+			var date =  value.toDateString();
+			date += ' at ' + value.getHours().toString().padStart(2, '0') + ':' + value.getMinutes().toString().padStart(2, '0');
+			return date;
+		}
+		return '';
+	});
 
 
 	hbs.registerHelper("thumbnail_person", function(user, options) {

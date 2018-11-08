@@ -40,8 +40,6 @@ exports = module.exports = function (req, res) {
 
 	if(typeof choirDirector !== 'undefined' && choirDirector !== 'all')
 		choirQuery = choirQuery.where('director', choirDirector);
-
-
 	
 	view.query('choirs', choirQuery
 		.populate('type')

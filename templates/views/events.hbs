@@ -1,22 +1,38 @@
 <div class="container">
 	{{#if events}}
 		{{#each events}}
-			<h2>{{name}}
-				<div class="pull-right text-muted">19th May 2014</div>
-			</h2>
-			<div class="row gallery-images">
-				<div class="col-sm-8 col-md-8">
-					<div class="row">
-						<div class="col-xs-4 col-sm-4 col-md-3 gallery-image">
-							<h1>Hallo</h1>
-						</div>
 
-					</div>
-				</div>
-			</div>
+			<!-- Title -->
+			<h1 class="mt-4">{{name}}</h1>
+
+
+
+			<!-- Date/Time -->
+			<p>
+				{{ __ 'From' }}: <strong>{{format_datetime startTime}}</strong><br />
+				{{ __ 'To' }}: <strong>{{format_datetime endTime}}</strong>
+			</p>
+
+			<p>
+				{{#if location}}
+					<address>
+						{{location.street1}}<br />
+						{{location.postcode}} {{location.suburb}}<br />
+					</address>
+				{{/if}}
+			</p>
+
+			<!-- Post Content -->
+			{{#if description}}
+				<p>
+					{{description}}
+				</p>
+			{{/if}}
+
+			<hr>
 		{{/each}}
 	{{else}}
 		<!-- else -->
-		<h3 class="text-muted">There are no events galleries yet.</h3>
+		<h3 class="text-muted">There are no events yet.</h3>
 	{{/if}}
 </div>
