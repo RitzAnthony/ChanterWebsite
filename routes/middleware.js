@@ -63,7 +63,6 @@ exports.initLocals = function (req, res, next) {
 
 		//default static navs
 		var staticNavLinks = [
-			//TODO add foreignPageUrl attribute to this navlinks, otherwise language redirection will 
 			//German static navigation tabs
 			{label: 'Gallerie', key: 'gallery', href: '/gallery', language: 'de',
 				foreignPageUrl:'/gallery',isDropdown:false},
@@ -74,8 +73,7 @@ exports.initLocals = function (req, res, next) {
 			{label: 'Chöre', key: 'choir', href: '/choirs', language: 'de',
 				foreignPageUrl:'/choirs',isDropdown:false},
 			
-			// TODO : translate to german
-			{label: 'Committee', key: 'committee', href: '/committees', language: 'de',
+			{label: 'Kommittee', key: 'committee', href: '/committees', language: 'de',
 				foreignPageUrl:'/committees',isDropdown:false},
 			
 			{label: 'Blog', key: 'blog', href: '/blog', language: 'de',

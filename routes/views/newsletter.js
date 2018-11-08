@@ -25,11 +25,7 @@ exports = module.exports = function (req, res) {
 			fields: 'name, email, deutsch, francais',
 			errorMessage: 'There was a problem submitting your newsletter request:',
 		}, function (err) {
-			if (err) {
-				locals.validationErrors = err.errors;
-			} else {
-				locals.enquirySubmitted = true;
-			}
+				locals.newsletterSubmitted = true;
 			next();
 		});
 	});

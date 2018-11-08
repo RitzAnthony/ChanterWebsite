@@ -9,14 +9,6 @@ var handlebars = require('express-handlebars');
 var hbs = require('handlebars');
 require('./helpers/handlebars')(hbs);
 
-/*var express = require('express'), //TODO (Autor:Anthony) i think this can be removed
-	app = express(),
-	cookieParser = require('cookie-parser'),
-	cookieLanguage = 'myLanguage';
-
-app.use(cookieParser(cookieLanguage));
-keystone.app = app; */
-
 // Initialise Keystone with your project's configuration.
 // See http://keystonejs.com/guide/config for available options
 // and documentation.
@@ -81,12 +73,6 @@ function getLanguages() {
 
 	keystone.set('availableLanguages', languages);
 	keystone.set('language', {'currentLanguage': languages[0].abbreviation});
-	/*keystone.list('Language').model.find().exec((err, languages) =>{
-		
-		keystone.set('availableLanguages', languages);
-		keystone.set('language', {'currentLanguage': languages[0].abbreviation});
-	});*/
-	
 }
 
 

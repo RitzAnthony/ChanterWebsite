@@ -26,7 +26,7 @@ Newsletter.schema.pre('save', function (next) {
 
 Newsletter.schema.post('save', function () {
 	if (this.wasNew) {
-		this.sendNotificationEmail();
+		//this.sendNotificationEmail();
 	}
 });
 
@@ -39,7 +39,7 @@ Newsletter.schema.methods.sendNotificationEmail = function (callback) {
 		};
 	}
 
-	//TODO exeption is thrown here because mailgun is not set
+	
 	if (!process.env.MAILGUN_API_KEY || !process.env.MAILGUN_DOMAIN) {
 		console.log('Unable to send email - no mailgun credentials provided');
 		return callback(new Error('could not find mailgun credentials'));
