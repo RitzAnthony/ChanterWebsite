@@ -39,7 +39,7 @@ keystone.init({
 	'auto update': true,
 	
 	// Database connection configuration
-	'mongo': 'mongodb://localhost:27017',
+	'mongo': 'mongodb://mongo-grp2:27017',
 	
 	
 	'session': true,

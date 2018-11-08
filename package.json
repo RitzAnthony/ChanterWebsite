@@ -25,7 +25,7 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "debug": "./node_modules/.bin/nodemon -L --inspect=0.0.0.0:9229 ./keystone.js",
+    "debug": "./node_modules/.bin/nodemon -L ./bin/www",
     "start": "node keystone.js"
   }
 }

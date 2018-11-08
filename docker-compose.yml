@@ -1,34 +1,26 @@
 version:                   '3.3'
 
-networks:
-  testNet:
-    driver: bridge
-
 services:
   app:
-    container_name: docker-chanter
+    container_name: docker-chanter-grp2
     build: .
-    ports:
-      - '3000:3000'
-      - '9229:9229'
-    volumes:
-      - data-volume:/usr/src/app/
-    command:     ["npm", "run", "debug"]
+    environment:
+      NODE_ENV: production
+      VIRTUAL_HOST: ${DOMAINS}
+      LETSENCRYPT_HOST: ${DOMAINS}
+      LETSENCRYPT_EMAIL:  ${EMAIL}
     restart: always
     depends_on:
-      - mongo
-    networks:
-      - testNet
-      
-  mongo:
-    container_name: mongo
+    - mongo-grp2
+
+  mongo-grp2:
+    container_name: mongo-grp2
     image: mongo
+    restart: always
     environment:
-      MONGO_INITDB_DATABASE: myMongo
-    ports:
-      - '27017:27017'
-    networks:
-      - testNet
-      
-volumes:
-  data-volume:
+      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
+
+networks:
+  default:
+    external:
+      name: ${NETWORK}
